@@ -5,7 +5,7 @@ class User extends Base{
 	// 表名
 	private static $table_name = 'user';
 	// 查询字段
-	private static $columns = array('user_id', 'user_name', 'password', 'real_name', 'mobile', 'email','website_name', 'user_desc','currency_count', 'login_time', 'status', 'login_ip', 'user_group', 'template', 'shortcuts', 'show_quicknote');
+	private static $columns = array('user_id', 'user_name', 'password', 'real_name', 'mobile', 'email', 'user_desc', 'login_time', 'status', 'login_ip', 'user_group', 'template', 'shortcuts', 'show_quicknote');
 	//状态定义
 	const ACTIVE = 1;
 	const DEACTIVE = 0;
@@ -25,7 +25,7 @@ class User extends Base{
 	}
 	
 	public static function getUserById($user_id) {
-		if (!$user_id) {
+		if (! $user_id || ! is_numeric ( $user_id )) {
 			return false;
 		}
 		$db=self::__instance();
@@ -164,10 +164,11 @@ class User extends Base{
 						)
 					);
 					
-		$list = $db->select(self::getTableName(), self::$columns,$condition);
+		$list = $db->select( self::getTableName(), self::$columns, $condition );
 		
 		if ($list) {
-			return $list[0];
+			
+			return $list [0];
 		} else {
 			return false;
 		}
@@ -264,13 +265,13 @@ class User extends Base{
 	}
 	
 	public static function loginDoSomething($user_id){
+		
 		$user_info = User::getUserById($user_id);
-
 		if($user_info['status']!=1) {
-			Common::jumpUrl("login.php");
+			//Common::jumpUrl("login.php");
 			return;
 		}
-
+		
 		//读取该用户所属用户组将该组的权限保存在$_SESSION中
 		$user_group = UserGroup::getGroupById($user_info['user_group']);
 		
@@ -284,7 +285,7 @@ class User extends Base{
 		
 		$login_time = time();
 		$login_ip = Common::getIp ();
-		$token = md5(uniqid(rand()));
+		$token = md5(uniqid(rand())); 
 		$update_data = array ('login_ip' => $login_ip, 'login_time' => $login_time ,'token'=>$token);
 		User::updateUser ( $user_info['user_id'], $update_data );
 		$user_info['login_ip']=$login_ip;

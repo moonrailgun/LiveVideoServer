@@ -30,5 +30,7 @@ if (Common::isPost()) {
 	}
 	
 	echo json_encode($res);
+}else{
+	echo '请使用POST方法进行操作';
 }
 ?>
