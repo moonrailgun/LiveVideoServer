@@ -8,15 +8,15 @@ class LVSStatis extends LVSBase{
 
 	private static $columns = array('actorID','actorName','playerID','playerName','toolName','toolTypeName','totalCost','totalAmount','createdDate');
 
-	public static function statisByActor($actorID,$page,$pageSize){
+	public static function statisByActor($actorID,$sendStartTime,$sendEndTime){
 		$db=self::__instance();
-		$condition['AND']=array("actorID"=>$actorID);
-		$condition["ORDER"]=" createdDate desc";
-		$condition['LIMIT']=array($page,$pageSize);
+		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]"=>[$sendStartTime,$sendEndTime]);
+		$condition['ORDER']=" createdDate desc";
 		
 		$list = $db->select(self::getTabelName(),self::$columns,$condition);
+
 		if($list){
-			var_dump($list);
+			return $list;
 		}
 
 		return array ();
