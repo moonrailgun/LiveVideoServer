@@ -53,6 +53,36 @@ class LVSStatis extends LVSBase{
 		return $res;
 	}
 
+	//getByTool
+	public static function getToolTypeNameFromItemLogList($list,$toolName){
+		foreach ($list as $key => $value) {
+			if($value['toolName']==$toolName){
+				return $value['toolTypeName'];
+			}
+		}
+		return '';
+	}
+
+	//getByTool
+	public static function getToolCostDataListFromItemLogList($list,$toolName){
+		$tmp_list = array();
+		$totalCost = 0;
+		$totalAmount = 0;
+		foreach ($list as $key => $value) {
+			if($value['toolName'] == $toolName){
+				$totalCost += $value['totalCost'];
+				$totalAmount += $value['totalAmount'];
+
+				$tmp['playerID'] = $value['playerID'];
+				$tmp['playerName'] = $value['playerName'];
+				$tmp['totalCost'] = $value['totalCost'];
+				array_push($tmp_list, $tmp);
+			}
+		}
+		$res['totalCost'] = $totalCost;
+		$res['totalAmount'] = $totalAmount;
+		$res['list'] = $tmp_list;
+		return $res;
 	}
 }
 ?>
