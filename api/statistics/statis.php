@@ -1,3 +1,22 @@
 <?php
-echo '[{"time": "2016-10-10","toolCost": "3000","toolUserAmount": "300"}]';
+require ('../../include/init.inc.php');
+
+$actorID = $sendStartTime = $sendEndTime = $toolName = $playerID = '';
+extract($_GET, EXTR_IF_EXISTS);
+
+if(Common::isGet()){
+	$list = LVSStatis::statisByActorIDAndItemData($actorID,$sendStartTime,$sendEndTime,$toolName,$playerID);
+	
+
+	$res = array();
+	foreach ($list as $key => $value) {
+		$tmp = array();
+		$tmp['time'] = $value['createdDate'];
+		$tmp['toolCost'] = $value['totalCost'];
+		$tmp['toolUserAmount'] = $value['totalAmount'];
+		$res[$key] = $tmp;
+	}
+	echo json_encode($res);
+}
+
 ?>

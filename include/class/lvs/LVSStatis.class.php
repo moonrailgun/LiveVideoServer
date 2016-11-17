@@ -11,7 +11,7 @@ class LVSStatis extends LVSBase{
 	//根据时间与主播ID获取统计信息
 	public static function statisByActorID($actorID,$sendStartTime,$sendEndTime){
 		$db=self::__instance();
-		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]"=>[$sendStartTime,$sendEndTime]);
+		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]" => array($sendStartTime , $sendEndTime));
 		$condition['ORDER']=" createdDate desc";
 		
 		$list = $db->select(self::getTabelName(),self::$columns,$condition);
@@ -83,6 +83,21 @@ class LVSStatis extends LVSBase{
 		$res['totalAmount'] = $totalAmount;
 		$res['list'] = $tmp_list;
 		return $res;
+	}
+
+	//statis
+	public static function statisByActorIDAndItemData($actorID,$sendStartTime,$sendEndTime,$toolName,$playerID){
+		$db=self::__instance();
+		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]" => array($sendStartTime , $sendEndTime),"toolName[=]"=>$toolName,"playerID[=]"=>$playerID);
+		$condition['ORDER']=" createdDate desc";
+		
+		$list = $db->select(self::getTabelName(),self::$columns,$condition);
+
+		if($list){
+			return $list;
+		}
+
+		return array ();
 	}
 }
 ?>
