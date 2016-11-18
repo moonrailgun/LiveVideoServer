@@ -2,7 +2,7 @@
 class LVSRule extends LVSBase{
 	private static $table_name = 'rule';
 
-	public static function getTabelName(){
+	public static function getTableName(){
 		return parent::$table_prefix.self::$table_name;
 	}
 

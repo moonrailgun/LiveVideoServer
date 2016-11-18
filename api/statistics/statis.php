@@ -7,7 +7,6 @@ extract($_GET, EXTR_IF_EXISTS);
 if(Common::isGet()){
 	$list = LVSStatis::statisByActorIDAndItemData($actorID,$sendStartTime,$sendEndTime,$toolName,$playerID);
 	
-
 	$res = array();
 	foreach ($list as $key => $value) {
 		$tmp = array();

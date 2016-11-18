@@ -2,7 +2,7 @@
 class LVSStatis extends LVSBase{
 	private static $table_name = "item_log";
 
-	public static function getTabelName(){
+	public static function getTableName(){
 		return parent::$table_prefix.self::$table_name;
 	}
 
@@ -91,7 +91,7 @@ class LVSStatis extends LVSBase{
 		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]" => array($sendStartTime , $sendEndTime),"toolName[=]"=>$toolName,"playerID[=]"=>$playerID);
 		$condition['ORDER']=" createdDate desc";
 		
-		$list = $db->select(self::getTabelName(),self::$columns,$condition);
+		$list = $db->select(self::getTableName(),self::$columns,$condition);
 
 		if($list){
 			return $list;

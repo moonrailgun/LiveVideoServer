@@ -46,7 +46,7 @@ date_default_timezone_set($_SESSION['osa_timezone']);
  * 如 "/nologin/", "/nologin/aaa/"
 **/
 
-$no_need_login_page=array("/block.php","/panel/login.php","/panel/logout.php","/api/user/","/api/statistics/");
+$no_need_login_page=array("/block.php","/panel/login.php","/panel/logout.php","/api/user/","/api/statistics/","/api/item/");
 
 // 如果不需要登录就可以访问的话
 $action_url = Common::getActionUrl();
