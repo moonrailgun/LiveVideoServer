@@ -5,6 +5,8 @@ $actorID = $actorName = $playerID = $playerName = $toolName = $toolTypeName = $t
 extract ($_POST, EXTR_IF_EXISTS);
 
 if (Common::isPost()) {
+	Common::setJsonHeader();
+
 	$res['statusCode'] = 1;
 	if($actorID != '' && $playerID != '' && $toolName != ''){
 		$item_data['actorID'] = $actorID;

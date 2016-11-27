@@ -5,6 +5,8 @@ $actorID = $sendStartTime = $sendEndTime = '';
 extract($_GET, EXTR_IF_EXISTS);
 
 if(Common::isGet()){
+	Common::setJsonHeader();
+
 	$list = LVSStatis::statisByActorID($actorID,$sendStartTime,$sendEndTime);
 
 	//====整理数组
