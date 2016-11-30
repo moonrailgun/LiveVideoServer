@@ -11,11 +11,9 @@ if(empty($menu)){
 }
 
 if (Common::isPost ()) {
-	
+
 	if($menu_name == "" || $menu_url =="" || ($menu_id>100 && empty($module_id)) ){
-		
 			OSAdmin::alert("error",ErrorMessage::NEED_PARAM);
-		
 	}else{
 		$exist = false;
 		$menu_exist = MenuUrl::getMenuByUrl($menu_url);
@@ -26,15 +24,15 @@ if (Common::isPost ()) {
 			}
 		}
 		if(!$exist){
-			$update_data = array ('menu_name' => $menu_name, 'menu_url' => $menu_url,  
+			$update_data = array ('menu_name' => $menu_name, 'menu_url' => $menu_url,
 								'is_show' => $is_show, "online" => $online,'menu_desc' => $menu_desc, 'shortcut_allowed' => $shortcut_allowed,
 								'father_menu' => $father_menu);
 			if($menu_id > 100){
 				$update_data['module_id'] = $module_id;
 			}
-			
+
 			$result = MenuUrl::updateMenuInfo ( $menu_id,$update_data );
-			
+
 			if ($result>=0) {
 				SysLog::addLog ( UserSession::getUserName(), 'MODIFY', 'MenuUrl' ,$menu_id, json_encode($update_data) );
 				Common::exitWithSuccess ('更新完成','panel/menus.php');

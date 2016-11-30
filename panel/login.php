@@ -8,12 +8,12 @@ if (Common::isPost ()) {
 		OSAdmin::alert("error",ErrorMessage::VERIFY_CODE_WRONG);
 	}else{
 		$user_info = User::checkPassword ( $user_name, $password );
-		
+
 		if ($user_info) {
 			if($user_info['status']==1){
-			
+
 				User::loginDoSomething($user_info['user_id']);
-				
+
 				if($remember){
 					$encrypted = OSAEncrypt::encrypt($user_info['user_id']);
 					User::setCookieRemember(urlencode($encrypted),30);
