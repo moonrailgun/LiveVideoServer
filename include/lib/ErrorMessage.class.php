@@ -26,4 +26,5 @@ class ErrorMessage {
 	const MENU_NOT_EXIST 	="功能链接不存在";
 	const GROUP_NOT_EXIST 	="账户组不存在";
 	const QUICKNOTE_NOT_EXIST 	="Quick note 不存在";
+	const PARAM_IS_NOT_JSON = "参数不是一个合法的JSON数据";
 }

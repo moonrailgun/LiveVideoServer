@@ -179,4 +179,8 @@ class Common {
 	public static function setJsonHeader() {
 		header('Content-Type: application/json');
 	}
+
+	public static function isJson($str){
+		return !is_null(json_decode($str));
+	}
 }
