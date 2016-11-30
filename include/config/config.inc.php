@@ -1,5 +1,5 @@
 <?php
-define('ACCESS', 1); 
+define('ACCESS', 1);
 error_reporting(E_ALL ^ E_NOTICE);
 // autoload 使用常量
 define('ADMIN_BASE', dirname (__FILE__) . '/../../include');
@@ -17,7 +17,7 @@ define('TEMPLATE_CACHE', ADMIN_BASE . '/cache/');
 // OSAdmin 常量
 define('ADMIN_URL' ,'http://localhost/LiveVideoServer');
 define('ADMIN_TITLE' ,'管理后台');
-define('COMPANY_NAME' ,'OSAdmin.org');
+define('COMPANY_NAME' ,'视频直播管理平台');
 
 // OSAdmin 数据库设置
 define('OSA_DB_ID' ,'osadmin');
@@ -56,7 +56,7 @@ $OSA_TEMPLATES = array(
 	'wintertide' => '冰雪冬季',
 );
 
-$OSADMIN_COMMAND_FOR_LOG = array(	
+$OSADMIN_COMMAND_FOR_LOG = array(
 	'SUCCESS' => '成功',
 	'ERROR' => '失败',
 	'ADD' => '增加',
@@ -76,4 +76,5 @@ $OSADMIN_CLASS_FOR_LOG = array(
 	'MenuUrl' => '功能',
 	'GroupRole' => '权限',
 	'QuickNote' => 'QuickNote',
+	'LVSRule' => '规则',
 );

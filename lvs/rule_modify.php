@@ -36,7 +36,6 @@ if(Common::isPost()){
                       'gift2SenderInfoRule' => $gift2SenderInfoRule,
                       'tool2DirectiveRule' => $tool2DirectiveRule );
     $result = LVSRule::updateGlobalRule($update_data);
-    var_dump($result);
     if($result){
       SysLog::addLog ( UserSession::getUserName(), 'MODIFY', 'LVSRule' , null, json_encode($update_data) );
 			Common::exitWithSuccess ('更新完成','lvs/rule_modify.php');
