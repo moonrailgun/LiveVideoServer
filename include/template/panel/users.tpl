@@ -38,7 +38,7 @@
                <table class="table table-striped">
               <thead>
                 <tr>
-					<th style="width:20px">#</th>
+					<th style="width:40px">#</th>
 					<th style="width:80px">登录名</th>
 					<th style="width:100px">姓名</th>
 					<th style="width:100px">手机</th>

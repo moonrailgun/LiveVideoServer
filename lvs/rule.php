@@ -13,6 +13,6 @@ Template::assign('rule', $rule_temp);
 Template::assign('tool2DirectiveRule', json_decode($rule_temp['tool2DirectiveRule'],true));
 Template::assign('gift2SenderInfoRule', json_decode($rule_temp['gift2SenderInfoRule'],true));
 Template::assign('costControlRule', json_decode($rule_temp['costControlRule'],true));
-Template::assign('controllerDirectiveRule', json_decode($rule_temp['controllerDirectiveRule']));
-Template::assign('acquisitionRule', json_decode($rule_temp['acquisitionRule']));
+Template::assign('controllerDirectiveRule', json_decode($rule_temp['controllerDirectiveRule'],true));
+Template::assign('acquisitionRule', json_decode($rule_temp['acquisitionRule'],true));
 Template::display ( 'lvs/rule.tpl' );

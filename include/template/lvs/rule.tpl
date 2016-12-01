@@ -19,8 +19,8 @@
                 <tr>
                     <th style="width:20px">#</th>
                     <th style="width:80px">toolName</th>
-                    <th style="width:100px">directiveName</th>
-                    <th style="width:80px">操作</th>
+                    <th style="width:200px">directiveName</th>
+                    <!-- <th style="width:80px">操作</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
                     <td>
                         <{$rule_item['directiveName']}>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="user_modify.php?user_id=<{$user_info.user_id}>" title="修改">
                           <i class="icon-pencil"></i>
                         </a>
@@ -43,7 +43,7 @@
                         <a data-toggle="modal" href="#myModal" title="删除">
                           <i class="icon-remove" href="#" ></i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
             <{/foreach}>
             </tbody>
@@ -62,7 +62,7 @@
                     <th style="width:80px">giftType</th>
                     <th style="width:100px">giftAmount</th>
                     <th style="width:100px">mapToolName</th>
-                    <th style="width:80px">操作</th>
+                    <!-- <th style="width:80px">操作</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -80,7 +80,7 @@
                     <td>
                         <{$rule_item['mapToolName']}>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="user_modify.php?user_id=<{$user_info.user_id}>" title="修改">
                           <i class="icon-pencil"></i>
                         </a>
@@ -88,7 +88,7 @@
                         <a data-toggle="modal" href="#myModal" title="删除">
                           <i class="icon-remove" href="#" ></i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
             <{/foreach}>
             </tbody>
@@ -106,7 +106,7 @@
                     <th style="width:20px">#</th>
                     <th style="width:80px">toolName</th>
                     <th style="width:200px">toolCost</th>
-                    <th style="width:80px">操作</th>
+                    <!-- <th style="width:80px">操作</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -121,7 +121,7 @@
                     <td>
                         <{$rule_item['toolCost']}>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="user_modify.php?user_id=<{$user_info.user_id}>" title="修改">
                           <i class="icon-pencil"></i>
                         </a>
@@ -129,12 +129,46 @@
                         <a data-toggle="modal" href="#myModal" title="删除">
                           <i class="icon-remove" href="#" ></i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
             <{/foreach}>
             </tbody>
         </table>
     </div>
+</div>
+
+<!-- controllerDirectiveRule -->
+<div class="block">
+	<a href="#page-stats4" class="block-heading" data-toggle="collapse">controllerDirectiveRule</a>
+	<div id="page-stats4" class="block-body collapse in">
+
+	 <table class="table table-striped">
+     <tbody>
+  			<tr><td style="width:300px;">format</td><td style="width:600px;"><{$controllerDirectiveRule['format']}></td></tr>
+  			<tr><td>directiveName</td><td><{$controllerDirectiveRule['directiveName']}></td></tr>
+  			<tr><td>description</td><td><{$controllerDirectiveRule['description']}></td></tr>
+      </tbody>
+    </table>
+	</div>
+</div>
+
+<!-- acquisitionRule -->
+<div class="block">
+	<a href="#page-stats5" class="block-heading" data-toggle="collapse">acquisitionRule</a>
+	<div id="page-stats5" class="block-body collapse in">
+
+	 <table class="table table-striped">
+     <tbody>
+  			<tr><td style="width:300px;">userID</td><td style="width:600px;"><{$acquisitionRule['userID']}></td></tr>
+  			<tr><td>userName</td><td><{$acquisitionRule['userName']}></td></tr>
+  			<tr><td>giftType</td><td><{$acquisitionRule['giftType']}></td></tr>
+        <tr><td>giftAmount</td><td><{$acquisitionRule['giftAmount']}></td></tr>
+        <tr><td>sendTime</td><td><{$acquisitionRule['sendTime']}></td></tr>
+        <tr><td>actorID</td><td><{$acquisitionRule['actorID']}></td></tr>
+        <tr><td>actorName</td><td><{$acquisitionRule['actorName']}></td></tr>
+      </tbody>
+    </table>
+	</div>
 </div>
 
 <!-- 操作的确认层，相当于javascript:confirm函数 -->
