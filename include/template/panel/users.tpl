@@ -23,8 +23,8 @@
 	</div>
 	<div style="float:left;margin-right:5px">
 		<label>查询所有用户请留空</label>
-		<input type="text" name="user_name" value="<{$_GET.user_name}>" placeholder="输入登录名" > 
-		<input type="hidden" name="search" value="1" > 
+		<input type="text" name="user_name" value="<{$_GET.user_name}>" placeholder="输入登录名" >
+		<input type="hidden" name="search" value="1" >
 	</div>
 	<div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
 		<button type="submit" class="btn btn-primary">检索</button>
@@ -50,8 +50,8 @@
 					<th style="width:80px">操作</th>
                 </tr>
               </thead>
-              <tbody>							  
-                <{foreach name=user from=$user_infos item=user_info}>				 
+              <tbody>
+                <{foreach name=user from=$user_infos item=user_info}>
 					<tr>
 					<td><{$user_info.user_id}></td>
 					<td><{$user_info.user_name}></td>
@@ -65,7 +65,7 @@
 					<td>
 					<a href="user_modify.php?user_id=<{$user_info.user_id}>" title= "修改" ><i class="icon-pencil"></i></a>
 					&nbsp;
-					
+
 					<{if $user_info.user_id != 1}>
 					<{if $user_info.status == 1}>
 					<a data-toggle="modal" href="#myModal"  title= "封停账号" ><i class="icon-pause" href="users.php?page_no=<{$page_no}>&method=pause&user_id=<{$user_info.user_id}>"></i></a>
@@ -80,11 +80,11 @@
 					</tr>
 				<{/foreach}>
               </tbody>
-            </table> 
+            </table>
 				<!--- START 分页模板 --->
-				
+
                <{$page_html}>
-					
+
 			   <!--- END --->
         </div>
     </div>

@@ -20,13 +20,9 @@ class LVSRule extends LVSBase{
 		return array ();
 		/*
 		$rule['tool2DirectiveRule']=json_decode('[{"toolName":"头套","directiveName":"tt1 start"}]');
-
 		$rule['controllerDirectiveRule']=json_decode('{"format":"","directiveName":"","description":""}');
-
 		$rule['acquisitionRule']=json_decode('{"userID":"userid","userName":"username","giftType":"giftType","giftAmount":"giftAmount","sendTime":"sendTime","actorID":"anchorID","actorName":"actorName"}');
-
 		$rule['gift2SenderInfoRule']=json_decode('[{"giftType":"鲜花","giftAmount":"510","mapToolName":"头套1"}]');
-
 		$rule['costControlRule']=json_decode('[{"toolName":"头套1","toolCost":100}]');
 		*/
 		//return $rule;
