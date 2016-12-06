@@ -18,7 +18,7 @@ if(Common::isPost()) {
 			$res['data']['user']['userName']=$user_info['user_name'];
 			$res['data']['user']['currencyCount']=$user_info['currency_count'];
 			$res['data']['user']['token']=$token;
-			// $res['data']['rule']=LVSRule::getGlobalRule();
+			
 			$global_rules = LVSRule::getGlobalRule();
 			$res['data']['rule'] = array();
 			foreach ($global_rules as $key => $value) {
