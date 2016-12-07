@@ -63,6 +63,7 @@ $OSADMIN_COMMAND_FOR_LOG = array(
 	'DELETE' => '删除',
 	'MODIFY' => '修改',
 	'LOGIN' => '登录',
+	'LOGIN_WITH_API' => '通过API登录',
 	'LOGOUT' => '退出',
 	'PAUSE' => '封停',
 	'PLAY' => '解封',

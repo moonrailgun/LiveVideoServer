@@ -12,13 +12,13 @@ if(Common::isPost()) {
 		if($user_info['status']==1){
 			$token = User::loginDoSomething($user_info['user_id']);
 			$ip = Common::getIp();
-			SysLog::addLog ( $userID, 'LOGIN', 'User' ,UserSession::getUserId(),json_encode(array("IP" => $ip)));
+			SysLog::addLog ( $userID, 'LOGIN_WITH_API', 'User' ,UserSession::getUserId(),json_encode(array("IP" => $ip)));
 			$res['resultCode'] = 1;
 			$res['data']['user']['userID']=$user_info['user_id'];
 			$res['data']['user']['userName']=$user_info['user_name'];
 			$res['data']['user']['currencyCount']=$user_info['currency_count'];
 			$res['data']['user']['token']=$token;
-			
+
 			$global_rules = LVSRule::getGlobalRule();
 			$res['data']['rule'] = array();
 			foreach ($global_rules as $key => $value) {
