@@ -20,6 +20,9 @@
                     <th style="width:20px">#</th>
                     <th style="width:80px">toolName</th>
                     <th style="width:200px">directiveName</th>
+                    <th style="width:200px">address</th>
+                    <th style="width:200px">command</th>
+                    <th style="width:200px">param</th>
                     <!-- <th style="width:80px">操作</th> -->
                 </tr>
             </thead>
@@ -34,6 +37,15 @@
                     </td>
                     <td>
                         <{$rule_item['directiveName']}>
+                    </td>
+                    <td>
+                        <{$rule_item['address']}>
+                    </td>
+                    <td>
+                        <{$rule_item['command']}>
+                    </td>
+                    <td>
+                        <{$rule_item['param']}>
                     </td>
                     <!-- <td>
                         <a href="user_modify.php?user_id=<{$user_info.user_id}>" title="修改">
