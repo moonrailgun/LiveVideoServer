@@ -46,11 +46,11 @@ date_default_timezone_set($_SESSION['osa_timezone']);
  * 如 "/nologin/", "/nologin/aaa/"
 **/
 
-$no_need_login_page=array("/block.php","/panel/login.php","/panel/logout.php","/api/user/","/api/statistics/","/api/item/");
+$no_need_login_page=array("/block.php","/panel/login.php","/panel/logout.php","/api/user/","/api/statistics/","/api/item/","/pay/");
 
 // 如果不需要登录就可以访问的话
 $action_url = Common::getActionUrl();
-if( OSAdmin::checkNoNeedLogin($action_url,$no_need_login_page) ){	
+if( OSAdmin::checkNoNeedLogin($action_url,$no_need_login_page) ){
 	// for login.php, logout.php, etc . . .
 	// ;
 } else {
@@ -70,12 +70,12 @@ if( OSAdmin::checkNoNeedLogin($action_url,$no_need_login_page) ){
 	if (stripos($_SERVER['SCRIPT_NAME'],"/ajax") === false) {
 		// 显示菜单、导航条、模板
 		$sidebar = SideBar::getTree ();
-		
+
 		// 是否显示 quick note
 		if($current_user_info['show_quicknote']){
 			OSAdmin::showQuickNote();
 		}
-		
+
 		$menu = MenuUrl::getMenuByUrl(Common::getActionUrl());
 		Template::assign ( 'page_title', $menu['menu_name']);
 		Template::assign ( 'content_header', $menu );

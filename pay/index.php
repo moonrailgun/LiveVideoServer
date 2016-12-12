@@ -11,7 +11,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	
+
 	<title>支付宝即时到账交易接口</title>
 </head>
 
@@ -157,7 +157,7 @@
 		width:100%;
 		min-width:1200px;
 		height:660px;
-		background-color:#fff;		
+		background-color:#fff;
 	}
 	.alipayform {
 		width:800px;
@@ -255,7 +255,7 @@
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
 		</div>
 		<div class="container">
@@ -284,7 +284,7 @@
 				<br>
 				<div class="mark">注意：商户订单号(out_trade_no).必填(建议是英文字母和数字,不能含有特殊字符)</div>
 			</div>
-			
+
 			<div class="element">
 				<div class="etitle">商品名称:</div>
 				<div class="einput"><input type="text" name="WIDsubject" value="test商品123"></div>
@@ -322,19 +322,19 @@
 		    <span><a href="http://fun.alipay.com/certificate/jyxkz.htm" target="_blank">ICP证：沪B2-20150087</a></span>
 		</p>
 
-		   
+
 	</div>
 </body>
 <script>
-	var even = document.getElementById("licode");	
+	var even = document.getElementById("licode");
 	var showqrs = document.getElementById("showqrs");
 	 even.onmouseover = function(){
-	 	showqrs.style.display = "block"; 
+	 	showqrs.style.display = "block";
 	 }
 	 even.onmouseleave = function(){
 	 	showqrs.style.display = "none";
 	 }
-	 
+
 	 var out_trade_no = document.getElementById("out_trade_no");
 
 	 //设定时间格式化函数
@@ -355,7 +355,7 @@
            }
            return format;
        };
-       
+
 	 out_trade_no.value = 'test'+ new Date().format("yyyyMMddhhmmss");
 </script>
 

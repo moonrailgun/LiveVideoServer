@@ -14,7 +14,7 @@
  * 该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
 
  *************************注意*****************
- 
+
  *如果您在接口集成过程中遇到问题，可以按照下面的途径来解决
  *1、开发文档中心（https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.KvddfJ&treeId=62&articleId=103740&docType=1）
  *2、商户帮助中心（https://cshall.alipay.com/enterprise/help_detail.htm?help_id=473888）
@@ -26,6 +26,7 @@
 
 require_once("alipay.config.php");
 require_once("lib/alipay_submit.class.php");
+require('../include/init.inc.php');
 
 /**************************请求参数**************************/
         //商户订单号，商户网站订单系统中唯一订单号，必填
@@ -54,7 +55,7 @@ $parameter = array(
 		"payment_type"	=> $alipay_config['payment_type'],
 		"notify_url"	=> $alipay_config['notify_url'],
 		"return_url"	=> $alipay_config['return_url'],
-		
+
 		"anti_phishing_key"=>$alipay_config['anti_phishing_key'],
 		"exter_invoke_ip"=>$alipay_config['exter_invoke_ip'],
 		"out_trade_no"	=> $out_trade_no,
@@ -64,8 +65,11 @@ $parameter = array(
 		"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
 		//其他业务参数根据在线开发文档，添加参数.文档地址:https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.kiX33I&treeId=62&articleId=103740&docType=1
         //如"参数名"=>"参数值"
-		
+
 );
+
+//添加交易记录
+exit(LVSTrade::addTradeLog($parameter));
 
 //建立请求
 $alipaySubmit = new AlipaySubmit($alipay_config);
