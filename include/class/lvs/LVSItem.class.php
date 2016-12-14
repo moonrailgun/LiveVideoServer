@@ -13,8 +13,10 @@ class LVSItem extends LVSBase{
 			return false;
 		}
 
-		date_default_timezone_set('shanghai');
-		$item_data['createdDate'] = date("Y-m-d H:i:s");
+		if($item_data['createdDate'] == ""){
+			date_default_timezone_set('shanghai');
+			$item_data['createdDate'] = date("Y-m-d H:i:s");
+		}
 
 		$db=self::__instance();
 		$id = $db->insert(self::getTableName(), $item_data);

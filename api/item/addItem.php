@@ -1,7 +1,7 @@
 <?php
 require ('../../include/init.inc.php');
 
-$actorID = $actorName = $playerID = $playerName = $toolName = $toolTypeName = $totalCost = $totalAmount = '';
+$actorID = $actorName = $playerID = $playerName = $toolName = $toolTypeName = $totalCost = $totalAmount = $sendTime = '';
 extract ($_POST, EXTR_IF_EXISTS);
 
 if (Common::isPost()) {
@@ -17,6 +17,7 @@ if (Common::isPost()) {
 		$item_data['toolTypeName'] = $toolTypeName;
 		$item_data['totalCost'] = $totalCost;
 		$item_data['totalAmount'] = $totalAmount;
+		$item_data['createdDate'] = $sendTime;
 
 		$id = LVSItem::addItem($item_data);
 		if($id) {
