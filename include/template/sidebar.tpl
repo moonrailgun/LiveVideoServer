@@ -26,7 +26,7 @@
 
 		<{/foreach}>
 
-        <!-- <a target="_blank" href="http://osadmin.org" class="nav-header" ><i class="icon-question-sign"></i>帮助</a> -->
+    <a target="_blank" href="<{$smarty.const.ADMIN_URL}>/pay" class="nav-header" ><i class="icon-shopping-cart"></i>充值</a>
 </div>
 	 <!--- 以上为左侧菜单栏 sidebar --->
 <{if $sidebarStatus=='yes' }>

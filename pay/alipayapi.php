@@ -69,7 +69,7 @@ $parameter = array(
 );
 
 //添加交易记录
-exit(LVSTrade::addTradeLog($parameter));
+echo LVSTrade::addTradeLog($parameter);
 
 //建立请求
 $alipaySubmit = new AlipaySubmit($alipay_config);

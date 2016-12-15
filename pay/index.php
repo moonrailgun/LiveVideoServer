@@ -6,6 +6,8 @@
  *说明：
  *以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
  */
+ include '../include/init.inc.php';
+ $user_name = UserSession::getUserName();
 ?>
 <!DOCTYPE html>
 <html>
@@ -260,11 +262,9 @@
 	<div class="header">
 		<div class="container">
 			<div class="nav">
-				<a href="https://www.alipay.com/" class="logo"><img src="img/alipay_logo.png" height="30px"></a>
+				<a href="../" class="logo"><img src="img/alipay_logo.png" height="30px"></a>
 				<span class="divier"></span>
-				<a href="http://open.alipay.com/platform/home.htm" class="open" target="_blank">开放平台</a>
-				<span class="divier"></span>
-				<a href="../" class="open" style="width:120px;" target="_blank">回到管理平台</a>
+				<a href="../" class="open" target="_blank" style="width:120px;">视频直播平台</a>
 				<!-- <ul class="navbar">
 					<li><a href="https://doc.open.alipay.com/doc2/detail?treeId=62&articleId=103566&docType=1" target="_blank">在线文档</a></li>
 					<li><a href="https://cschannel.alipay.com/portal.htm?sourceId=213" target="_blank">技术支持</a></li>
@@ -272,7 +272,7 @@
 			</div>
 		</div>
 		<div class="container blue">
-			<div class="title">支付宝即时到账(create_direct_pay_by_user)</div>
+			<div class="title">货币充值</div>
 		</div>
 	</div>
 	<div class="content">
@@ -299,7 +299,7 @@
 			<!-- </div> -->
 			<div class="element">
 				<div class="etitle">充值账户:</div>
-				<div class="einput"><input type="text" name="userID" value="moonrailgun"></div>
+				<div class="einput"><input type="text" name="userID" value="<?=$user_name?>"></div>
 				<!-- <br> -->
 				<!-- <div class="mark">注意：产品名称(subject)，必填(建议中文，英文，数字，不能含有特殊字符)</div> -->
 			</div>
