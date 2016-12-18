@@ -329,22 +329,6 @@
 			</div>
 		</form>
 	</div>
-	<div class="footer">
-		<p class="footer-sub">
-		    <a href="http://ab.alipay.com/i/index.htm" target="_blank">关于支付宝</a><span>|</span>
-		    <a href="https://e.alipay.com/index.htm" target="_blank">商家中心</a><span>|</span>
-		    <a href="https://job.alibaba.com/zhaopin/index.htm" target="_blank">诚征英才</a><span>|</span>
-		    <a href="http://ab.alipay.com/i/lianxi.htm" target="_blank">联系我们</a><span>|</span>
-		    <a href="#" id="international" target="_blank">International&nbsp;Business</a><span>|</span>
-		    <a href="http://ab.alipay.com/i/jieshao.htm#en" target="_blank">About Alipay</a>
-		    <br>
-		     <span>支付宝版权所有</span>
-		    <span class="footer-date">2004-2016</span>
-		    <span><a href="http://fun.alipay.com/certificate/jyxkz.htm" target="_blank">ICP证：沪B2-20150087</a></span>
-		</p>
-
-
-	</div>
 </body>
 <script>
 	// var even = document.getElementById("licode");
