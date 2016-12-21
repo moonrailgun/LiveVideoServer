@@ -293,4 +293,35 @@ class User extends Base{
 		UserSession::setSessionInfo( $user_info);
 		return $token;
 	}
+
+	public static function batchAddUsers($user_id_prefix, $suffix_number,$start_num,$count_num, $password,$website_name, $user_desc){
+		if (!$user_id_prefix ||!$suffix_number ||!$password) {
+			return false;
+		}
+		$password = md5($password);
+		$db=self::__instance();
+
+		$user_data_list = array();
+		for($i=$start_num;$i<$start_num+$count_num;$i++){
+			$var=sprintf("%0".$suffix_number."d", 2);//生成$suffix_number位数，不足前面补0
+			$user_id = $user_id_prefix + $var;
+			array_push($user_data_list, array(
+				"user_id"=>$user_id,
+				"user_name"=>$user_id,
+				"password"=>$password,
+				"real_name"=>"匿名",
+				"mobile"=>"123456789",
+				"email"=>"123456789@qq.com",
+				"website_name"=>$website_name,
+				"currency_count"=>0,
+				"user_desc"=>$user_desc,
+				"user_group"=>2,
+				"template"=>"schoolpainting",
+				"show_quicknote"=>1
+			));
+		}
+
+		$id = $db->insert ( self::getTableName(), $user_data_list );
+		return $id;
+	}
 }
