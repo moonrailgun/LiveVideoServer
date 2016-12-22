@@ -8,4 +8,6 @@ if (Common::isPost ()) {
   User::batchAddUsers($user_id_prefix, $suffix_number,$start_num,$count_num, $password,$website_name, $user_desc);
 }
 
+Template::assign("_POST" ,$_POST);
+Template::display ( 'panel/user_batch_add.tpl' );
 ?>

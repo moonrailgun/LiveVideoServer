@@ -8,13 +8,13 @@
 <div class="well">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">请修改账号资料</a></li>
-    </ul>	
-	
+    </ul>
+
 	<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane active in" id="home">
 
            <form id="tab" method="post" action="" autocomplete="off">
-				
+
 				<label>登录名 <span class="label label-info">不可修改</span></label>
 				<input type="text" name="user_name" value="<{$user.user_name}>" class="input-xlarge" readonly="true">
 				<label>密码 <span class="label label-important" >如不修改请留空</span></label>
@@ -28,7 +28,7 @@
 				<label>描述</label>
 				<textarea name="user_desc" rows="3" class="input-xlarge"><{$user.user_desc}></textarea>
 				<label>账号组</label>
-				
+
 				<{if $user.user_id == 1}>
 				<{html_options name=user_group id="DropDownTimezone" class="input-xlarge" options=$group_options disabled="true" selected=$user.user_group}>
 				<{else }>
@@ -41,6 +41,6 @@
 			</form>
         </div>
     </div>
-</div>	
+</div>
 <!-- END 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>
