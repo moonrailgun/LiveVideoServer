@@ -298,13 +298,14 @@ class User extends Base{
 		if (!$user_id_prefix ||!$suffix_number ||!$password) {
 			return false;
 		}
+
 		$password = md5($password);
 		$db=self::__instance();
 
 		$user_data_list = array();
 		for($i=$start_num;$i<$start_num+$count_num;$i++){
-			$var=sprintf("%0".$suffix_number."d", 2);//生成$suffix_number位数，不足前面补0
-			$user_id = $user_id_prefix + $var;
+			$var=sprintf("%0".$suffix_number."d", $i);//生成$suffix_number位数，不足前面补0
+			$user_id = $user_id_prefix.$var;
 			array_push($user_data_list, array(
 				"user_id"=>$user_id,
 				"user_name"=>$user_id,
@@ -321,7 +322,12 @@ class User extends Base{
 			));
 		}
 
-		$id = $db->insert ( self::getTableName(), $user_data_list );
-		return $id;
+		$ids = array();
+		foreach ($user_data_list as $key => $value) {
+			$id = $db->insert(self::getTableName(), $value);
+			array_push($ids, $id);
+		}
+
+		return $ids;
 	}
 }

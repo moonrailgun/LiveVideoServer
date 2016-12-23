@@ -17,19 +17,17 @@
   				<label>用户ID前缀<span class="label label-info">英文</span></label>
   				<input type="text" name="user_id_prefix" value="<{$_POST.user_id_prefix}>" class="input-xlarge" autofocus="true" required="true" >
   				<label>用户ID编号保留数字位数<span class="label label-info">如保留三位数字则写3</span></label>
-  				<input type="text" name="suffix_number" value="<{$_POST.suffix_number}>" class="input-xlarge" required="true" placeholder="3">
+  				<input type="number" name="suffix_number" value="<{$_POST.suffix_number}>" class="input-xlarge" required="true" placeholder="3">
   				<label>起始编号</label>
-  				<input type="text" name="start_num" value="<{$_POST.start_num}>" class="input-xlarge" required="true" placeholder="0">
+  				<input type="number" name="start_num" value="<{$_POST.start_num}>" class="input-xlarge" required="true" placeholder="0">
   				<label>ID生成数</label>
-  				<input type="text" name="count_num" value="<{$_POST.count_num}>" class="input-xlarge" required="true" placeholder="1">
+  				<input type="number" name="count_num" value="<{$_POST.count_num}>" class="input-xlarge" required="true" placeholder="1">
   				<label>默认密码</label>
   				<input type="text" name="password" value="<{$_POST.password}>"  class="input-xlarge" required="true">
           <label>所属网站名</label>
   				<input type="text" name="website_name" value="<{$_POST.website_name}>"  class="input-xlarge" required="true" >
   				<label>用户描述</label>
   				<textarea name="user_desc" rows="3" class="input-xlarge"><{$_POST.user_desc}></textarea>
-  				<label>账号组</label>
-  				<{html_options name=user_group id="DropDownTimezone" class="input-xlarge" options=$group_options selected=0}>
           <div class="btn-toolbar">
     				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
     				<div class="btn-group"></div>
