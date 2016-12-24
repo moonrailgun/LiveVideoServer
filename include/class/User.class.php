@@ -325,7 +325,7 @@ class User extends Base{
 		$ids = array();
 		foreach ($user_data_list as $key => $value) {
 			$id = $db->insert(self::getTableName(), $value);
-			array_push($ids, $id);
+			array_push($ids, $value['user_id']);
 		}
 
 		return $ids;

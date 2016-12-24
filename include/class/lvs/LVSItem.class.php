@@ -22,5 +22,15 @@ class LVSItem extends LVSBase{
 		$id = $db->insert(self::getTableName(), $item_data);
 		return $id;
 	}
+
+	public static function getAllItemLog(){
+		$db = self::__instance();
+		$list = $db->select( self::getTableName(),"*");
+
+		if ($list) {
+			return $list;
+		}
+		return array ();
+	}
 }
 ?>
