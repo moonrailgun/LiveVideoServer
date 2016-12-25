@@ -13,13 +13,30 @@ class LVSWebsite extends LVSBase
     public static function getWebsiteList()
     {
         $db = self::__instance();
-        $list = $db->select(self::getTableName(), $columns);
+        $list = $db->select(self::getTableName(), self::$columns);
 
         if ($list) {
             return $list;
         }
 
         return array();
+    }
+
+    public static function getWebsiteInfoById($website_id){
+      if (!$website_id) {
+  			return false;
+  		}
+  		$db=self::__instance();
+  		$condition = array("AND" =>
+  						array("website_id[=]" => $website_id,
+  						)
+  					);
+  		$list = $db->select ( self::getTableName(), self::$columns, $condition );
+
+  		if ($list) {
+  			return $list[0];
+  		}
+  		return array ();
     }
 
     public static function addWebsite($website_data)
