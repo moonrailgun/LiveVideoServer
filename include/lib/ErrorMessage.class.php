@@ -12,7 +12,7 @@ class ErrorMessage {
 	const PWD_TOO_SHORT	="密码不能少于6位";
 	const OLD_PWD_WRONG	="原密码错误";
 	const VERIFY_CODE_WRONG ="验证码错误";
-	const PWD_UPDATE_SUCCESS	="密码修改成功";
+	const PWD_UPDATE_SUCCESS	="密码修改成功,请重新登录";
 	const BE_PAUSED		="您被封停，请联系管理员！";
 	const USER_OR_PWD_WRONG	="用户名或密码错误";
 	const SUCCESS_NEED_LOGIN="操作成功，部分功能需要用户重新登录才可使用";
@@ -27,4 +27,5 @@ class ErrorMessage {
 	const GROUP_NOT_EXIST 	="账户组不存在";
 	const QUICKNOTE_NOT_EXIST 	="Quick note 不存在";
 	const PARAM_IS_NOT_JSON = "参数不是一个合法的JSON数据";
+	const NOT_SAME_PWD = "两次密码不一致";
 }

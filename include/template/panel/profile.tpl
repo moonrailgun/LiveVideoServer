@@ -17,7 +17,7 @@
 		<{/if}>
     </ul>
     <div id="myTabContent" class="tab-content">
-		
+
 		<{if $change_password }>
 		  <div class="tab-pane fade" id="home">
 		<{else }>
@@ -35,9 +35,9 @@
 				<label>描述</label>
 				<textarea name="user_desc" value="Smith" rows="3" class="input-xlarge"><{$user_info.user_desc}></textarea>
 				<hr />
-				<label>显示QuickNote</label>	
+				<label>显示QuickNote</label>
 				<{html_options name=show_quicknote id="DropDownTimezone" class="input-xlarge" options=$quicknoteOptions selected=$user_info.show_quicknote}>
-				
+
 				<div class="btn-toolbar">
 					<button type="submit" class="btn btn-primary"><i class="icon-save"></i> 保存</button>
 					<div class="btn-group"></div>
@@ -55,6 +55,8 @@
 				<input type="password" name="old" class="input-xlarge">
 				<label>新密码</label>
 				<input type="password" name="new" class="input-xlarge">
+        <label>确认新密码</label>
+				<input type="password" name="new_repeat" class="input-xlarge">
 				<div>
 					<button class="btn btn-primary">更新</button>
 				</div>
