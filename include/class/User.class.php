@@ -25,7 +25,7 @@ class User extends Base{
 	}
 
 	public static function getUserById($user_id) {
-		if (!$user_id) {
+		if (!$user_id || !is_numeric($user_id)) {
 			return false;
 		}
 		$db=self::__instance();
@@ -215,7 +215,7 @@ class User extends Base{
 	}
 
 	public static function delUser($user_id) {
-		if (! $user_id ) {
+		if (! $user_id || ! is_numeric ( $user_id )) {
 			return false;
 		}
 		$db=self::__instance();
