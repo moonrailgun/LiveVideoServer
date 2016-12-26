@@ -22,6 +22,18 @@ class LVSWebsite extends LVSBase
         return array();
     }
 
+    //生成key为网站id value为网站的所有网站数组
+    public static function getWebsiteIdList(){
+      $result = array();
+      $website_list = self::getWebsiteList();
+      foreach ($website_list as $key => $value) {
+        $website_id = $value['website_id'];
+        $website_name = $value['website_name'];
+        $result[$website_id] = $website_name;
+      }
+      return $result;
+    }
+
     public static function getWebsiteInfoById($website_id){
       if (!$website_id) {
   			return false;
