@@ -6,6 +6,10 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 
+<div class="btn-toolbar" style="margin-bottom:2px;">
+    <a href="website_add.php" class="btn btn-primary"><i class="icon-plus"></i> 网站</a>
+</div>
+
 <div class="block">
     <a href="#page-stats" class="block-heading" data-toggle="collapse">网站列表</a>
     <div id="page-stats" class="block-body collapse in">

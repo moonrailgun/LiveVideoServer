@@ -52,6 +52,40 @@ class LVSWebsite extends LVSBase
   		return array ();
     }
 
+    public static function getWebsiteByName($website_name){
+      if (!$website_name) {
+  			return false;
+  		}
+  		$db=self::__instance();
+  		$condition = array("AND" =>
+  						array("website_name[=]" => $website_name,
+  						)
+  					);
+  		$list = $db->select ( self::getTableName(), self::$columns, $condition );
+
+  		if ($list) {
+  			return $list[0];
+  		}
+  		return array ();
+    }
+
+    public static function getWebsiteByShortName($website_short_name){
+      if (!$website_short_name) {
+  			return false;
+  		}
+  		$db=self::__instance();
+  		$condition = array("AND" =>
+  						array("website_short_name[=]" => $website_short_name,
+  						)
+  					);
+  		$list = $db->select ( self::getTableName(), self::$columns, $condition );
+
+  		if ($list) {
+  			return $list[0];
+  		}
+  		return array ();
+    }
+
     public static function addWebsite($website_data)
     {
         if (!$website_data || !is_array($website_data)) {
