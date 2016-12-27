@@ -3,7 +3,7 @@
 class LVSActor extends LVSBase
 {
     private static $table_name = 'actor';
-    private static $columns = array('actor_id', 'actor_nick_name', 'actor_website', 'actor_generated_name', 'actor_phone','actor_real_name','actor_is_actived');
+    private static $columns = array('actor_id', 'actor_nick_name', 'actor_website', 'actor_generated_name', 'actor_phone','actor_real_name','actor_currency','actor_is_actived');
 
     public static function getTableName()
     {
@@ -13,8 +13,24 @@ class LVSActor extends LVSBase
     public static function getAllActor(){
       $db = self::__instance();
 
-      $condition = array('actor_is_actived' => "1");
+      $condition = array("actor_is_actived" => "1");
       $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+      if ($list) {
+          return $list;
+      }
+
+      return array();
+    }
+
+    public static function getActorListByWebsite($website_id){
+      $db = self::__instance();
+
+      $condition['AND'] = array(
+        "actor_is_actived" => "1",
+        "actor_website" => $website_id
+      );
+      $list = $db->select(self::getTableName(), "*", $condition);
 
       if ($list) {
           return $list;

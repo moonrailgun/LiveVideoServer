@@ -5,7 +5,7 @@ class User extends Base{
 	// 表名
 	private static $table_name = 'user';
 	// 查询字段
-	private static $columns = array('user_id', 'user_name', 'password', 'real_name', 'mobile', 'email','website_name','currency_count', 'user_desc', 'login_time', 'status', 'login_ip', 'user_group', 'template', 'shortcuts', 'show_quicknote','token');
+	private static $columns = array('user_id', 'user_name', 'password', 'real_name', 'mobile', 'email','website_name', 'user_desc', 'login_time', 'status', 'login_ip', 'user_group', 'template', 'shortcuts', 'show_quicknote','token');
 	//状态定义
 	const ACTIVE = 1;
 	const DEACTIVE = 0;

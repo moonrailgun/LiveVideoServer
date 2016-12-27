@@ -28,7 +28,8 @@ class LVSWebsite extends LVSBase
       $website_list = self::getWebsiteList();
       foreach ($website_list as $key => $value) {
         $website_id = $value['website_id'];
-        $website_name = $value['website_name'];
+        //$website_name = $value['website_name'];
+        $website_name = $value['website_name']."(". $value['website_short_name'].")";
         $result[$website_id] = $website_name;
       }
       return $result;
