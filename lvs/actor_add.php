@@ -25,7 +25,7 @@ if(Common::isPost()){
     );
     $actor_id = LVSActor::addActor($actor_data);
     if($actor_id){
-      SysLog::addLog(UserSession::getUserName(), 'ADD', 'Actor' ,$user_id, json_encode($actor_data));
+      SysLog::addLog(UserSession::getUserName(), 'ADD', 'Actor' ,$actor_id, json_encode($actor_data));
 			Common::exitWithSuccess ('客户添加成功','lvs/actor.php');
     }else{
 			OSAdmin::alert("error");

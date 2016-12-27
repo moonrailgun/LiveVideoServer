@@ -84,7 +84,7 @@ class LVSActor extends LVSBase
       return $id;
     }
 
-    public static function getActorInfoById(){
+    public static function getActorInfoById($actor_id){
       if (empty($actor_id)) {
           return false;
       }
@@ -92,9 +92,12 @@ class LVSActor extends LVSBase
       $db = self::__instance();
       $condition = array('actor_id' => $actor_id);
 
-      $id = $db->select(self::getTableName(), self::$columns, $condition);
+      $list = $db->select(self::getTableName(), self::$columns, $condition);
+      if($list){
+        return $list[0];
+      }
 
-      return $id;
+      return array();
     }
 
     public static function addActor($actor_data){
@@ -103,6 +106,19 @@ class LVSActor extends LVSBase
       }
       $db = self::__instance();
       $id = $db->insert(self::getTableName(), $actor_data);
+
+      return $id;
+    }
+
+    public static function updateActor($actor_id, $actor_data){
+      if (!$actor_data || !is_array($actor_data)) {
+          return false;
+      }
+
+      $db = self::__instance();
+      $condition = array('actor_id' => $actor_id);
+
+      $id = $db->update(self::getTableName(), $actor_data, $condition);
 
       return $id;
     }
