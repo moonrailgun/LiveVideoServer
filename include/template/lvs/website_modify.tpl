@@ -17,9 +17,9 @@
   				<label>网站名</label>
   				<input type="text" name="website_name" value="<{$website_info.website_name}>" class="input-xlarge" required="true">
   				<label>网站简称</label>
-  				<input type="text" name="website_short_name" value="<{$website_info.website_short_name}>" class="input-xlarge">
+  				<input type="text" name="website_short_name" value="<{$website_info.website_short_name}>" class="input-xlarge" required="true">
   				<label>网站描述</label>
-  				<input type="text" name="website_desc" value="<{$website_info.website_desc}>" class="input-xlarge" required="true" >
+  				<input type="text" name="website_desc" value="<{$website_info.website_desc}>" class="input-xlarge">
     			<div class="btn-toolbar">
     				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
     				<div class="btn-group"></div>

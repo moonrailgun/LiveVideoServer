@@ -28,4 +28,6 @@ class ErrorMessage {
 	const QUICKNOTE_NOT_EXIST 	="Quick note 不存在";
 	const PARAM_IS_NOT_JSON = "参数不是一个合法的JSON数据";
 	const NOT_SAME_PWD = "两次密码不一致";
+	const WEBSITE_NAME_CONFLICT = "网站名已存在";
+	const WEBSITE_SHORT_NAME_CONFLICT = "网站简称已存在";
 }

@@ -12,6 +12,7 @@ $actor_list = LVSActor::getActorListByWebsite($website_id);
 
 Template::assign("website_id_list",$website_id_list);
 Template::assign("actor_list",$actor_list);
+Template::assign("website_id",$website_id);
 Template::display("lvs/actor_currency.tpl");
 
 ?>
