@@ -197,6 +197,7 @@ class Common {
 		}else{
 				return false;
 		}
+		
 		array_multisort($key_arrays,$sort_order,$sort_type,$arrays);
 		return $arrays;
 	}

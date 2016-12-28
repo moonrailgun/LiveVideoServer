@@ -103,6 +103,10 @@ class LVSStatis extends LVSBase{
 	//根据主播总价值进行统计
 	public static function statisByActorWorth($website_id, $start_date, $end_date) {
 		$item_log_list = LVSItem::getItemLog($start_date, $end_date);
+		if(!$item_log_list){
+			return false;
+		}
+
 		$actor_list = LVSActor::getActorListByWebsite($website_id);
 		$actor_list = LVSActor::rebuildActorListById($actor_list);
 
@@ -129,5 +133,33 @@ class LVSStatis extends LVSBase{
 		}
 	}
 
+	//根据道具发送次数进行统计
+	public static function statisByItemName($actor_id, $start_date, $end_date){
+		$item_log_list = LVSItem::getItemLog($start_date, $end_date, $actor_id);
+		if(!$item_log_list){
+			return false;
+		}
+
+		$temp_list = array();//用于装载排序前的统计结果(即数据合并结果)
+		foreach ($item_log_list as $key => $value) {
+			$item_name = $value['toolName'];
+
+			//如果结果中已有该主播数据。数据相加。否则创建
+			if(!array_key_exists($item_name, $temp_list)){
+				$temp_list[$item_name]['item_name'] = $item_name;
+				$temp_list[$item_name]['item_cost'] = 0;
+				$temp_list[$item_name]['item_cost_amount'] = 0;
+			}
+			$temp_list[$item_name]['item_cost'] += $value['totalCost'];
+			$temp_list[$item_name]['item_cost_amount'] += $value['totalAmount'];
+		}
+
+		$result_list = Common::multiArraySort($temp_list, 'item_cost', SORT_DESC);
+		if($result_list){
+			return $result_list;
+		}else{
+			return false;
+		}
+	}
 }
 ?>

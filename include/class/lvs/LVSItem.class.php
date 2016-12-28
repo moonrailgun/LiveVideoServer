@@ -33,11 +33,14 @@ class LVSItem extends LVSBase{
 		return array ();
 	}
 
-	public static function getItemLog($start_date, $end_date){
+	public static function getItemLog($start_date, $end_date, $actor_id=""){
 		$db = self::__instance();
 		$condition['AND']=array(
-			"createdDate[<>]" => array($start_date, $end_date)
+			'createdDate[<>]' => array($start_date, $end_date)
 		);
+		if($actor_id != ""){
+			$condition['AND']['actorID[=]'] = $actor_id;
+		}
 
 		$list = $db->select(self::getTableName(),self::$columns,$condition);
 		if($list){
