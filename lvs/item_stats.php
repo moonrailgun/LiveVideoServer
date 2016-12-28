@@ -13,6 +13,8 @@ if($website_id != '' && $start_date!= '' && $end_date != ''){
 
   if($actor_id != ''){
     $tab_item_data = LVSStatis::statisByItemName($actor_id, $start_date, $end_date);
+    $tab_detail_data = LVSStatis::statisByActorID($actor_id, $start_date, $end_date);
+
   }
 }
 
@@ -23,6 +25,7 @@ Template::assign('show_actor_options',$show_actor_options);
 Template::assign('actor_id_list',$actor_id_list);
 Template::assign('tab_actor_data',$tab_actor_data);
 Template::assign('tab_item_data',$tab_item_data);
+Template::assign('tab_detail_data',$tab_detail_data);
 Template::assign('website_id_list',$website_id_list);
 Template::display('lvs/item_stats.tpl');
 ?>

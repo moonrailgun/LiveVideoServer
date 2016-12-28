@@ -84,6 +84,26 @@
     	</div>
 
     	</div>
+      <div id="tab_detail" class="tab-pane fade">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width:80px">#</th>
+              <th style="width:100px">玩家名称</th>
+              <th style="width:50px">消费额(虚拟币)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <{foreach name=detail from=$tab_detail_data item=detail_item}>
+            <tr>
+              <td><{$smarty.foreach.detail.index + 1}></td>
+              <td><{$detail_item.playerName}></td>
+              <td><{$detail_item.totalCost}></td>
+            </tr>
+            <{/foreach}>
+          </tbody>
+        </table>
+    	</div>
     </div>
 </div>
 
