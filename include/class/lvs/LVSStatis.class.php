@@ -13,7 +13,7 @@ class LVSStatis extends LVSBase{
 		$db=self::__instance();
 		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]" => array($sendStartTime , $sendEndTime));
 		$condition['ORDER']=" createdDate desc";
-		
+
 		$list = $db->select(self::getTabelName(),self::$columns,$condition);
 
 		if($list){
@@ -90,7 +90,7 @@ class LVSStatis extends LVSBase{
 		$db=self::__instance();
 		$condition['AND']=array("actorID[=]"=>$actorID,"createdDate[<>]" => array($sendStartTime , $sendEndTime),"toolName[=]"=>$toolName,"playerID[=]"=>$playerID);
 		$condition['ORDER']=" createdDate desc";
-		
+
 		$list = $db->select(self::getTableName(),self::$columns,$condition);
 
 		if($list){
@@ -99,5 +99,35 @@ class LVSStatis extends LVSBase{
 
 		return array ();
 	}
+
+	//根据主播总价值进行统计
+	public static function statisByActorWorth($website_id, $start_date, $end_date) {
+		$item_log_list = LVSItem::getItemLog($start_date, $end_date);
+		$actor_list = LVSActor::getActorListByWebsite($website_id);
+		$actor_list = LVSActor::rebuildActorListById($actor_list);
+
+		$temp_list = array();//用于装载排序前的统计结果(即数据合并结果)
+		foreach ($item_log_list as $key => $value) {
+			$item_actor_id = $value['actorID'];
+
+			//如果结果中已有该主播数据。数据相加。否则创建
+			if(!array_key_exists($item_actor_id, $temp_list)){
+				$actor_name = $actor_list[$item_actor_id]['actor_nick_name'];
+				$temp_list[$item_actor_id]['actor_nick_name'] = $actor_name;
+				$temp_list[$item_actor_id]['actor_cost'] = 0;
+				$temp_list[$item_actor_id]['actor_cost_amount'] = 0;
+			}
+			$temp_list[$item_actor_id]['actor_cost'] += $value['totalCost'];
+			$temp_list[$item_actor_id]['actor_cost_amount'] += $value['totalAmount'];
+		}
+
+		$result_list = Common::multiArraySort($temp_list, 'actor_cost', SORT_DESC);
+		if($result_list){
+			return $result_list;
+		}else{
+			return false;
+		}
+	}
+
 }
 ?>

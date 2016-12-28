@@ -23,11 +23,24 @@ class LVSItem extends LVSBase{
 		return $id;
 	}
 
-	public static function getAllItemLog(){
+	public static function getAllItemLog() {
 		$db = self::__instance();
 		$list = $db->select( self::getTableName(),"*");
 
 		if ($list) {
+			return $list;
+		}
+		return array ();
+	}
+
+	public static function getItemLog($start_date, $end_date){
+		$db = self::__instance();
+		$condition['AND']=array(
+			"createdDate[<>]" => array($start_date, $end_date)
+		);
+
+		$list = $db->select(self::getTableName(),self::$columns,$condition);
+		if($list){
 			return $list;
 		}
 		return array ();

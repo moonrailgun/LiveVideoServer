@@ -122,4 +122,14 @@ class LVSActor extends LVSBase
 
       return $id;
     }
+
+    //输入一个数据库列表。返回一个以ID为key的数组
+    public static function rebuildActorListById($actor_list){
+      $result = array();
+      foreach ($actor_list as $key => $value) {
+        $actor_id = $value["actor_id"];
+        $result[$actor_id] = $value;
+      }
+      return $result;
+    }
 }

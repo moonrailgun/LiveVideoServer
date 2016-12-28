@@ -183,4 +183,21 @@ class Common {
 	public static function isJson($str){
 		return !is_null(json_decode($str));
 	}
+
+	//多维数组根据特定键的值排序
+	public static function multiArraySort($arrays,$sort_key,$sort_order=SORT_ASC,$sort_type=SORT_NUMERIC){
+		if(is_array($arrays)){
+				foreach ($arrays as $array){
+						if(is_array($array)){
+								$key_arrays[] = $array[$sort_key];
+						}else{
+								return false;
+						}
+				}
+		}else{
+				return false;
+		}
+		array_multisort($key_arrays,$sort_order,$sort_type,$arrays);
+		return $arrays;
+	}
 }
