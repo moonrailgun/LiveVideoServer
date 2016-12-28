@@ -82,6 +82,50 @@
           </tbody>
         </table>
     	</div>
+      <div id="tab_player_cost" class="tab-pane fade">
+        <div style="float:left;margin-right:5px">
+          <label>玩家：</label>
+          <input id="filter_player_name" type="text"  class="input-xlarge" onchange="filterData()" onKeyUp="filterData()"/>
+        </div>
+        <div style="float:left;margin-right:5px">
+          <label>道具：</label>
+          <select id="filter_tool_name" class="input-xlarge" onchange="filterData()">
+            <{html_options options=$tool_list selected=0}>
+          </select>
+        </div>
+        <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
+          <a type="submit" onclick="clearFilter();" class="btn btn-primary"><strong>清空条件</strong></a>
+        </div>
+        <div style="clear:both;"></div>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width:40px">#</th>
+              <th style="width:180px">网站</th>
+              <th style="width:100px">主播</th>
+              <th style="width:200px">发送时间</th>
+              <th style="width:100px">道具名称</th>
+              <th style="width:60px">道具单价</th>
+              <th style="width:100px">玩家名</th>
+            </tr>
+          </thead>
+          <tbody>
+            <{foreach name=player_cost from=$tab_detail_data item=detail_item}>
+            <tr class="player_cost_row">
+              <td><{$smarty.foreach.player_cost.index + 1}></td>
+              <td><{$website_name}></td>
+              <td><{$actor_name}></td>
+              <td><{$detail_item.createdDate}></td>
+              <td class="player_cost_tool_name"><{$detail_item.toolName}></td>
+              <td><{$detail_item.totalCost/$detail_item.totalAmount}></td>
+              <td class="player_cost_player_name"><{$detail_item.playerName}></td>
+            </tr>
+            <{/foreach}>
+          </tbody>
+        </table>
+    	</div>
+      <div id="tab_time" class="tab-pane fade">
 
     	</div>
       <div id="tab_detail" class="tab-pane fade">
@@ -118,6 +162,43 @@ $(function() {
 	date.datepicker({dateFormat: "yy-mm-dd"});
 	date.datepicker("option", "firstDay", 1 );
 });
+
+function filterData(){
+  var filter_player_name = $('#filter_player_name').val();
+  var filter_tool_name = $('#filter_tool_name').text().trim();
+
+  if(filter_player_name == "" && filter_tool_name == ""){
+    $('.player_cost_row').show();
+  }else{
+    if(filter_player_name != ""){
+      $('.player_cost_row').each(function(){
+        var obj = $(this);
+        if(obj.children('.player_cost_player_name').text().indexOf(filter_player_name) >= 0 ){
+          obj.show();
+        }else{
+          obj.hide();
+        }
+      })
+    }
+
+    if(filter_tool_name != ""){
+      $('.player_cost_row').each(function(){
+        var obj = $(this);
+        if(obj.children('.player_cost_tool_name').text().indexOf(filter_tool_name) >= 0 ){
+          obj.show();
+        }else{
+          obj.hide();
+        }
+      })
+    }
+  }
+}
+
+function clearFilter(){
+  $('#filter_player_name').val("");
+  $('#filter_tool_name').val("");
+  $('.player_cost_row').show();
+}
 </script>
 
 <!-- END 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
