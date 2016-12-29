@@ -129,11 +129,12 @@
     	</div>
       <div id="tab_time" class="tab-pane fade">
 				<div style="">
-			    <label>道具</label>
+			    <label>道具:</label>
 			    <select>
 						<option value="all" selected="selected">全部</option>
 					</select>
-					<label>道具消费金额</label>
+					<!-- <label>道具消费金额</label> -->
+					<canvas id="cost_chart" style="width:90%;height:400px"></canvas>
 			  </div>
     	</div>
       <div id="tab_detail" class="tab-pane fade">
@@ -211,7 +212,48 @@ function clearFilter(){
 $(function(){
 	var tab_time_data = '<{$tab_time_data}>';
 	tab_time_data = JSON.parse(tab_time_data);
-	console.log(tab_time_data);
+	// console.log(tab_time_data);
+
+	if(tab_time_data){
+		var labelArray = [];
+		var dataArray = [];
+		$.each(tab_time_data, function(idx, obj) {
+			labelArray.push(idx);
+			dataArray.push(obj['total_cost']);
+		});
+		// console.log(labelArray);
+
+		var ctx = $("#cost_chart").get(0).getContext("2d");
+		var config = {
+			type: 'line',
+			data:{
+				labels:labelArray,
+				datasets:[{
+					label: "总消费",
+					fill: false,
+					backgroundColor: "rgb(54, 162, 235)",
+					borderColor: "rgb(54, 162, 235)",
+					data: dataArray
+				}]
+			},
+			options: {
+					responsive: true,
+					title:{
+							display:true,
+							text:'道具消费金额'
+					},
+					tooltips: {
+							mode: 'index',
+							intersect: false,
+					},
+					hover: {
+							mode: 'nearest',
+							intersect: true
+					}
+			}
+		}
+		var myNewChart = new Chart(ctx, config);
+	}
 })
 </script>
 
