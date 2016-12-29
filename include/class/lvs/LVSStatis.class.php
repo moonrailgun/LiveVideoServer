@@ -161,5 +161,44 @@ class LVSStatis extends LVSBase{
 			return false;
 		}
 	}
+
+	//按天给出道具消费
+	public static function statisByTime($actor_id, $start_date, $end_date){
+		$item_log_list = LVSItem::getItemLog($start_date, $end_date, $actor_id);
+
+		//循环出每一天
+		$start_stamp = strtotime($start_date);
+		$end_stamp = strtotime($end_date);
+		$date_list = array();
+		for ($day = $start_stamp; $day <= $end_stamp; $day += 24 * 3600) {
+    	$date = date("Y-m-d", $day);
+			array_push($date_list, $date);
+		}
+
+		$result_list = array();
+		//创建空数组
+		foreach ($date_list as $key => $value) {
+			$result_list[$value]['total_cost'] = 0;
+		}
+
+		//填充数据
+		foreach ($item_log_list as $key => $value) {
+			$log_date_time = $value['createdDate'];
+			$time_stamp = strtotime($log_date_time);
+			$log_date = date('Y-m-d', $time_stamp);
+			if(array_key_exists($log_date, $result_list)){
+				$item_name = $value['toolName'];
+				$item_cost = $value['totalCost'];
+				if(!array_key_exists($item_name, $result_list[$log_date])){
+					$result_list[$log_date][$item_name] = 0;
+				}
+				$result_list[$log_date][$item_name] += $item_cost;
+				$result_list[$log_date]['total_cost'] += $item_cost;
+			}
+		}
+		// var_dump(json_encode($result_list,JSON_UNESCAPED_UNICODE));
+
+		return $result_list;
+	}
 }
 ?>

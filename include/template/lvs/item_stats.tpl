@@ -6,6 +6,8 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 
+<script src="<{$smarty.const.ADMIN_URL}>/assets/lib/Chart.js/Chart.min.js"></script>
+
 <div style="border:0px;padding-bottom:5px;height:auto">
 	<form action="" method="GET" style="margin-bottom:0px">
 	<div style="float:left;margin-right:5px">
@@ -126,7 +128,13 @@
         </table>
     	</div>
       <div id="tab_time" class="tab-pane fade">
-
+				<div style="">
+			    <label>道具</label>
+			    <select>
+						<option value="all" selected="selected">全部</option>
+					</select>
+					<label>道具消费金额</label>
+			  </div>
     	</div>
       <div id="tab_detail" class="tab-pane fade">
         <table class="table table-striped">
@@ -199,6 +207,12 @@ function clearFilter(){
   $('#filter_tool_name').val("");
   $('.player_cost_row').show();
 }
+
+$(function(){
+	var tab_time_data = '<{$tab_time_data}>';
+	tab_time_data = JSON.parse(tab_time_data);
+	console.log(tab_time_data);
+})
 </script>
 
 <!-- END 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
