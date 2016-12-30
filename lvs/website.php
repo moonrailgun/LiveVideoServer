@@ -22,7 +22,7 @@ if($method == 'del' && !empty($website_id)){
 $confirm_html = OSAdmin::renderJsConfirm("icon-remove");
 
 Template::assign('website_list', $website_list);
-Template::assign ( 'osadmin_action_confirm' , $confirm_html);
+Template::assign ('osadmin_action_confirm' , $confirm_html);
 Template::display('lvs/website.tpl');
 
 ?>
