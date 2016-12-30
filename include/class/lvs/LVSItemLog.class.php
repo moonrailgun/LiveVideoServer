@@ -1,5 +1,5 @@
 <?php
-class LVSItem extends LVSBase{
+class LVSItemLog extends LVSBase{
 	private static $table_name = "item_log";
 
 	private static $columns = array('actorID','actorName','playerID','playerName','toolName','toolTypeName','totalCost','totalAmount','createdDate');

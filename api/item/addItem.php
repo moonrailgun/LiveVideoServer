@@ -19,7 +19,7 @@ if (Common::isPost()) {
 		$item_data['totalAmount'] = $totalAmount;
 		$item_data['createdDate'] = $sendTime;
 
-		$id = LVSItem::addItem($item_data);
+		$id = LVSItemLog::addItem($item_data);
 		if($id) {
 			$res['resultCode'] = 1;
 			$res['id'] = $id;

@@ -102,7 +102,7 @@ class LVSStatis extends LVSBase{
 
 	//根据主播总价值进行统计
 	public static function statisByActorWorth($website_id, $start_date, $end_date) {
-		$item_log_list = LVSItem::getItemLog($start_date, $end_date);
+		$item_log_list = LVSItemLog::getItemLog($start_date, $end_date);
 		if(!$item_log_list){
 			return false;
 		}
@@ -135,7 +135,7 @@ class LVSStatis extends LVSBase{
 
 	//根据道具发送次数进行统计
 	public static function statisByItemName($actor_id, $start_date, $end_date){
-		$item_log_list = LVSItem::getItemLog($start_date, $end_date, $actor_id);
+		$item_log_list = LVSItemLog::getItemLog($start_date, $end_date, $actor_id);
 		if(!$item_log_list){
 			return false;
 		}
@@ -164,7 +164,7 @@ class LVSStatis extends LVSBase{
 
 	//按天给出道具消费
 	public static function statisByTime($actor_id, $start_date, $end_date){
-		$item_log_list = LVSItem::getItemLog($start_date, $end_date, $actor_id);
+		$item_log_list = LVSItemLog::getItemLog($start_date, $end_date, $actor_id);
 
 		//循环出每一天
 		$start_stamp = strtotime($start_date);
