@@ -18,8 +18,12 @@
           <select id="website_id" name="website_id" class="input-xlarge">
             <{html_options options=$website_id_list selected=$_POST.website_id}>
           </select>
-          <label>采数间隔</label>
-          <input type="text" name="time_span" value="<{$_POST.time_span}>" class="input-xlarge" required="true" >
+          <label>道具</label>
+          <select id="item_id" name="item_id" class="input-xlarge">
+            <{html_options options=$item_id_list selected=$_POST.item_id}>
+          </select>
+          <label>单价</label>
+          <input type="text" name="item_cost" value="<{$_POST.item_cost}>" class="input-xlarge" required="true" >
           <div class="btn-toolbar">
           	<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
           	<div class="btn-group"></div>

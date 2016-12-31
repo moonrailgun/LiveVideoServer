@@ -14,16 +14,17 @@ if ($website_id == '') {
   } elseif (Common::isPost()) {
     if ($website_id == ''||$time_span == '') {
         OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
-    }
-    $rule_data = array(
-      'time_span' => $time_span
-    );
-    $result = LVSRule::updateRule(LVSRule::$common_table_name, $condition, $rule_data);
-    if ($result >= 0) {
-        SysLog::addLog(UserSession::getUserName(), 'MODIFY', 'Rule', $website_id, json_encode($rule_data));
-        Common::exitWithSuccess('更新完成', 'lvs/rule_common.php');
-    } else {
-        OSAdmin::alert('error');
+    }else{
+      $rule_data = array(
+        'time_span' => $time_span
+      );
+      $result = LVSRule::updateRule(LVSRule::$common_table_name, $condition, $rule_data);
+      if ($result >= 0) {
+          SysLog::addLog(UserSession::getUserName(), 'MODIFY', 'Rule', $website_id, json_encode($rule_data));
+          Common::exitWithSuccess('更新完成', 'lvs/rule_common.php');
+      } else {
+          OSAdmin::alert('error');
+      }
     }
   }
 }
