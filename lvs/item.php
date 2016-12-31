@@ -10,7 +10,7 @@ if($method == 'del' && !empty($item_id)){
   if ($result>=0) {
     SysLog::addLog(UserSession::getUserName(), 'DELETE', 'Item' ,$item_id ,json_encode($item_info));
     Common::exitWithSuccess('已删除道具','lvs/item.php' );
-  }else{
+  }else{  
     OSAdmin::alert("error");
   }
 }

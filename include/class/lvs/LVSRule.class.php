@@ -2,6 +2,12 @@
 class LVSRule extends LVSBase{
 	private static $table_name = 'rule';
 	private static $columns = array('ruleName','ruleData');
+	public static $common_table_name = "lvs_rule_common";
+	public static $cost_table_name = "lvs_rule_cost";
+	public static $gather_table_name = "lvs_rule_gather";
+	public static $gift2item_table_name = "lvs_rule_gift2item";
+	public static $item_available_table_name = "lvs_rule_item_available";
+	public static $item2directive_table_name = "lvs_rule_item2directive";
 
 	public static function getTableName(){
 		return parent::$table_prefix.self::$table_name;
@@ -41,38 +47,68 @@ class LVSRule extends LVSBase{
 		return $data;
 	}
 
-	public static function getRuleByName($rule_name){
+	// public static function getRuleByName($rule_name){
+	// 	$db = self::__instance();
+	// 	$condition = array("ruleName[=]"=>$ruleName);
+	// 	$list = $db->select(self::getTableName(),self::$columns,$condition);
+	// 	if ($list) {
+	// 		return $list[0];
+	// 	}
+	// 	return array ();
+	// }
+
+	public static function getRule($rule_table_name){
 		$db = self::__instance();
-		$condition = array("ruleName[=]"=>$ruleName);
-		$list = $db->select(self::getTableName(),self::$columns,$condition);
+		$list = $db->select($rule_table_name,'*');
+		if ($list) {
+			return $list;
+		}
+		return array ();
+	}
+
+	public static function getRuleByCondition($rule_table_name, $condition){
+		if(!$condition){
+			return false;
+		}
+
+		$db = self::__instance();
+		$list = $db->select($rule_table_name,'*',$condition);
 		if ($list) {
 			return $list[0];
 		}
 		return array ();
 	}
 
-	public static function getAcquisitionRule(){
-		return self::getRuleByName("acquisitionRule");
+	public static function addRule($rule_table_name, $data){
+		if (!$data || !is_array($data)) {
+        return false;
+    }
+    $db = self::__instance();
+    $id = $db->insert($rule_table_name, $data);
+
+    return $id;
 	}
 
-	public static function getControllerDirectiveRule(){
-		return self::getRuleByName("controllerDirectiveRule");
+	public static function updateRule($rule_table_name, $condition, $data){
+		if (!$condition || !$data || !is_array($data)) {
+				return false;
+		}
+
+		$db = self::__instance();
+		$id = $db->update($rule_table_name, $data, $condition);
+
+		return $id;
 	}
 
-	public static function getCostControlRule(){
-		return self::getRuleByName("costControlRule");
-	}
+	public static function delRule($rule_table_name, $condition){
+		if (!$rule_table_name || !$condition) {
+				return false;
+		}
 
-	public static function getGift2SenderInfoRule(){
-		return self::getRuleByName("gift2SenderInfoRule");
-	}
+		$db = self::__instance();
+		$result = $db->delete($rule_table_name, $condition);
 
-	public static function getTool2DirectiveRule(){
-		return self::getRuleByName("tool2DirectiveRule");
-	}
-
-	public static function getCommonRule(){
-		return self::getRuleByName("commonRule");
+		return $result;
 	}
 }
 ?>
