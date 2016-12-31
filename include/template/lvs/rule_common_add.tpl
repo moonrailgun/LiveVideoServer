@@ -15,7 +15,7 @@
       <div class="tab-pane active in" id="home">
         <form id="tab" method="post" action="" autocomplete="off">
           <label>视频网站</label>
-          <select id="website_id" name="website_id" class="input-xlarge" onchange="updateGeneratedName()" style="margin:5px 0px 0px">
+          <select id="website_id" name="website_id" class="input-xlarge" style="margin:5px 0px 0px">
             <{html_options options=$website_id_list selected=$_POST.website_id}>
           </select>
           <label>采数间隔</label>

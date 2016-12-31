@@ -9,6 +9,12 @@ class LVSRule extends LVSBase{
 	public static $item_available_table_name = "lvs_rule_item_available";
 	public static $item2directive_table_name = "lvs_rule_item2directive";
 
+	public static function getStatusList(){
+		$status_list[0] = "故障";
+		$status_list[1] = "正常";
+		return $status_list;
+	}
+
 	public static function getTableName(){
 		return parent::$table_prefix.self::$table_name;
 	}
@@ -76,7 +82,7 @@ class LVSRule extends LVSBase{
 		if ($list) {
 			return $list[0];
 		}
-		return array ();
+		return array();
 	}
 
 	public static function addRule($rule_table_name, $data){

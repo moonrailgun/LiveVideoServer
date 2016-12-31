@@ -39,6 +39,19 @@ class LVSActor extends LVSBase
       return array();
     }
 
+    // $actor_nick_name = $list[$website_id][$actor_id]
+    public static function getActorIdList(){
+      $result = array();
+      $actor_list = self::getAllActor();
+      foreach ($actor_list as $key => $value) {
+        $website_id = $value['actor_website'];
+        $actor_id = $value['actor_id'];
+        $actor_nick_name = $value['actor_nick_name'];
+        $result[$website_id][$actor_id] = $actor_nick_name;
+      }
+      return $result;
+    }
+
     public static function getActorIdListByWebsite($website_id){
       $result = array();
       $actor_list = self::getActorListByWebsite($website_id);

@@ -15,7 +15,7 @@ if(Common::isPost()){
     );
     $id = LVSRule::addRule(LVSRule::$common_table_name, $data);
 
-		SysLog::addLog(UserSession::getUserName(), 'ADD', 'Website' ,$website_id, json_encode($data));
+		SysLog::addLog(UserSession::getUserName(), 'ADD', 'Rule' ,$website_id, json_encode($data));
 		Common::exitWithSuccess ('规则添加成功','lvs/rule_common.php');
   }
 }

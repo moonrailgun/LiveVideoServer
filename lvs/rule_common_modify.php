@@ -16,7 +16,6 @@ if ($website_id == '') {
         OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
     }
     $rule_data = array(
-      'website_id' => $website_id,
       'time_span' => $time_span
     );
     $result = LVSRule::updateRule(LVSRule::$common_table_name, $condition, $rule_data);
