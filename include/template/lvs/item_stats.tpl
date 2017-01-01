@@ -92,7 +92,8 @@
         <div style="float:left;margin-right:5px">
           <label>道具：</label>
           <select id="filter_tool_name" class="input-xlarge" onchange="filterData()">
-            <{html_options options=$tool_list selected=0}>
+						<option value="all" selected="selected">全部</option>
+            <{html_options options=$item_id_list}>
           </select>
         </div>
         <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
@@ -130,8 +131,9 @@
       <div id="tab_time" class="tab-pane fade">
 				<div style="">
 			    <label>道具:</label>
-			    <select>
+			    <select id="chartSelect">
 						<option value="all" selected="selected">全部</option>
+						<{html_options options=$item_id_list}>
 					</select>
 					<!-- <label>道具消费金额</label> -->
 					<canvas id="cost_chart" style="width:90%;height:400px"></canvas>
@@ -174,38 +176,51 @@ $(function() {
 
 function filterData(){
   var filter_player_name = $('#filter_player_name').val();
-  var filter_tool_name = $('#filter_tool_name').text().trim();
+  var filter_tool_name = $('#filter_tool_name').find("option:selected").text().trim();
 
-  if(filter_player_name == "" && filter_tool_name == ""){
+  if(filter_player_name == "" && filter_tool_name == "全部"){
     $('.player_cost_row').show();
   }else{
-    if(filter_player_name != ""){
-      $('.player_cost_row').each(function(){
-        var obj = $(this);
-        if(obj.children('.player_cost_player_name').text().indexOf(filter_player_name) >= 0 ){
-          obj.show();
-        }else{
-          obj.hide();
-        }
-      })
-    }
+		var show_list = [];
+		var hide_list = [];
 
-    if(filter_tool_name != ""){
-      $('.player_cost_row').each(function(){
-        var obj = $(this);
-        if(obj.children('.player_cost_tool_name').text().indexOf(filter_tool_name) >= 0 ){
-          obj.show();
-        }else{
-          obj.hide();
-        }
-      })
-    }
+    $('.player_cost_row').each(function(){
+      var obj = $(this);
+			var player_name = obj.children('.player_cost_player_name').text();
+			var tool_name = obj.children('.player_cost_tool_name').text();
+			if(filter_player_name!=""&&filter_tool_name!="全部"){
+				if(player_name.indexOf(filter_player_name)>=0&&tool_name.indexOf(filter_tool_name)>=0){
+					show_list.push(obj);
+				}else{
+					hide_list.push(obj);
+				}
+			}else if(filter_player_name!=""){
+				if(player_name.indexOf(filter_player_name)>=0){
+					show_list.push(obj);
+				}else{
+					hide_list.push(obj);
+				}
+			}else if(filter_tool_name!=""){
+				if(tool_name.indexOf(filter_tool_name)>=0){
+					show_list.push(obj);
+				}else{
+					hide_list.push(obj);
+				}
+			}
+
+			for(var i=0;i<show_list.length;i++){
+				show_list[i].show();
+			}
+			for(var i=0;i<hide_list.length;i++){
+				hide_list[i].hide();
+			}
+		});
   }
 }
 
 function clearFilter(){
   $('#filter_player_name').val("");
-  $('#filter_tool_name').val("");
+  $('#filter_tool_name').val("all");
   $('.player_cost_row').show();
 }
 
@@ -254,6 +269,35 @@ $(function(){
 		}
 		var myNewChart = new Chart(ctx, config);
 	}
+
+	//绑定事件
+	$('#chartSelect').change(function(){
+		var value = $('#chartSelect').find("option:selected").text();
+		if(value == "全部"){
+			config.data.datasets.splice(1,1);
+		}else{
+			var newDataArray = [];
+			$.each(tab_time_data, function(idx, obj) {
+				newDataArray.push(obj[value] || 0);
+			});
+			if(config.data.datasets.length != 1){
+				//删除之前的
+				config.data.datasets.splice(1,1);
+			}
+			config.data.datasets.push({
+				label: value,
+				fill: false,
+				backgroundColor: "rgb(255, 99, 132)",
+				borderColor: "rgb(255, 99, 132)",
+				data: newDataArray
+			});
+			console.log(dataArray);
+			console.log(newDataArray);
+		}
+
+
+		myNewChart.update();
+	})
 })
 </script>
 

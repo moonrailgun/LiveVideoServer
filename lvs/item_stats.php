@@ -19,6 +19,7 @@ if($website_id != '' && $start_date!= '' && $end_date != ''){
   }
 }
 $website_id_list = LVSWebsite::getWebsiteIdList();
+$item_id_list = LVSItem::getItemIdList();
 
 Template::assign('_GET',$_GET);
 Template::assign('show_actor_options',$show_actor_options);
@@ -29,6 +30,7 @@ Template::assign('tab_player_cost_data',$tab_player_cost_data);
 Template::assign('tab_detail_data',$tab_detail_data);
 Template::assign('tab_time_data',json_encode($tab_time_data, JSON_UNESCAPED_UNICODE));
 Template::assign('website_id_list',$website_id_list);
+Template::assign('item_id_list',$item_id_list);
 Template::assign('actor_name',$actor_id_list[$website_id]);
 Template::assign('website_name',$website_id_list[$website_id]);
 Template::display('lvs/item_stats.tpl');
