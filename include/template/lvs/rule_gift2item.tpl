@@ -11,7 +11,7 @@
 </div>
 
 <div class="block">
-    <a href="#page-stats" class="block-heading" data-toggle="collapse">道具消费规则列表</a>
+    <a href="#page-stats" class="block-heading" data-toggle="collapse">礼物转道具规则列表</a>
     <div id="page-stats" class="block-body collapse in">
     <table class="table table-striped">
     <thead>
