@@ -8,11 +8,18 @@ if($method == 'del' && !empty($actor_id)){
   $actor_info = LVSActor::getActorInfoById($actor_id);
   $result = LVSActor::unableActor($actor_id);
 
-  var_dump($result);
-
   if ($result>=0) {
     SysLog::addLog(UserSession::getUserName(), 'DELETE', 'Actor' ,$actor_id ,json_encode($actor_info));
     Common::exitWithSuccess('已删除客户','lvs/actor.php' );
+  }else{
+    OSAdmin::alert("error");
+  }
+}else if($method == 'reset_password' && !empty($actor_id)){
+  $result = LVSActor::resetPassword($actor_id);
+
+  if ($result>=0) {
+    SysLog::addLog(UserSession::getUserName(), 'RESET', 'Actor' ,$actor_id ,null);
+    Common::exitWithSuccess('已重置客户密码','lvs/actor.php' );
   }else{
     OSAdmin::alert("error");
   }
@@ -29,7 +36,7 @@ if($actor_list) {
 }
 
 //追加操作的确认层
-$confirm_html = OSAdmin::renderJsConfirm("icon-remove");
+$confirm_html = OSAdmin::renderJsConfirm("icon-remove,icon-repeat");
 
 Template::assign ( 'osadmin_action_confirm' , $confirm_html);
 Template::assign("actor_list",$actor_list);

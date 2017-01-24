@@ -34,6 +34,7 @@
         <td><{$actor.actor_generated_name}></td>
         <td>
           <a href="actor_modify.php?actor_id=<{$actor.actor_id}>" title= "修改" ><i class="icon-pencil"></i></a>
+          <a data-toggle="modal" href="#myModal" title= "重置密码" ><i class="icon-repeat" href="actor.php?page_no=<{$page_no}>&method=reset_password&actor_id=<{$actor.actor_id}>" ></i></a>
           <a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="actor.php?page_no=<{$page_no}>&method=del&actor_id=<{$actor.actor_id}>" ></i></a>
         </td>
       </tr>

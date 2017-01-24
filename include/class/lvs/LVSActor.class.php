@@ -159,6 +159,7 @@ class LVSActor extends LVSBase
       if (!$actor_data || !is_array($actor_data)) {
           return false;
       }
+      $actor_data["actor_password"] = md5("123456");
       $db = self::__instance();
       $id = $db->insert(self::getTableName(), $actor_data);
 
