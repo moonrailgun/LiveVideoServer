@@ -1,6 +1,6 @@
 <?php
 require ('../include/init.inc.php');
-$website_id = $time_span = '';
+$website_id = $time_span = $web_ip = '';
 extract($_POST, EXTR_IF_EXISTS);
 
 if(Common::isPost()){
@@ -11,7 +11,8 @@ if(Common::isPost()){
   }else{
     $data = array(
       "website_id" => $website_id,
-      "time_span" => $time_span
+      "time_span" => $time_span,
+      "web_ip" => $web_ip
     );
     $id = LVSRule::addRule(LVSRule::$common_table_name, $data);
 

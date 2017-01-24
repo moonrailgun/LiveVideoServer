@@ -20,6 +20,8 @@
           </select>
           <label>采数间隔</label>
           <input type="text" name="time_span" value="<{$_POST.time_span}>" class="input-xlarge" required="true" >
+          <label>采数IP <span class="label label-info">多个IP用英文逗号[,]分割</span></label>
+          <input type="text" name="web_ip" value="<{$_POST.web_ip}>" class="input-xlarge" required="true" >
           <div class="btn-toolbar">
           	<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
           	<div class="btn-group"></div>

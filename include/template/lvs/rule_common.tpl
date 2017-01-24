@@ -18,6 +18,7 @@
       <tr>
         <th style="width:80px">视频网名称</th>
         <th style="width:100px">采样间隔</th>
+        <th style="width:100px">采样IP</th>
         <th style="width:80px">操作</th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
       <tr>
         <td><{$website_id_list[$rule_info.website_id]}></td>
         <td><{$rule_info.time_span}></td>
+        <td><{$rule_info.web_ip}></td>
         <td>
           <a href="rule_common_modify.php?website_id=<{$rule_info.website_id}>" title= "修改" ><i class="icon-pencil"></i></a>
           <a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="rule_common.php?page_no=<{$page_no}>&method=del&rule_id=<{$rule_info.website_id}>"></i></a>

@@ -6,7 +6,7 @@ extract($_GET, EXTR_IF_EXISTS);
 
 if(Common::isGet()){
 	Common::setJsonHeader();
-	
+
 	$list = LVSStatis::statisByActorIDAndItemData($actorID,$sendStartTime,$sendEndTime,$toolName,$playerID);
 
 	$res = array();

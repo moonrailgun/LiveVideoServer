@@ -2,7 +2,7 @@
 
 require '../include/init.inc.php';
 
-$website_id = $time_span = '';
+$website_id = $time_span = $web_ip = '';
 extract($_REQUEST, EXTR_IF_EXISTS);
 
 if ($website_id == '') {
@@ -16,7 +16,8 @@ if ($website_id == '') {
         OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
     }else{
       $rule_data = array(
-        'time_span' => $time_span
+        'time_span' => $time_span,
+        'web_ip' => $web_ip
       );
       $result = LVSRule::updateRule(LVSRule::$common_table_name, $condition, $rule_data);
       if ($result >= 0) {

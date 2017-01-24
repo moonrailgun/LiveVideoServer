@@ -2,6 +2,7 @@
 class LVSRule extends LVSBase{
 	private static $table_name = 'rule';
 	private static $columns = array('ruleName','ruleData');
+
 	public static $common_table_name = "lvs_rule_common";
 	public static $cost_table_name = "lvs_rule_cost";
 	public static $gather_table_name = "lvs_rule_gather";
