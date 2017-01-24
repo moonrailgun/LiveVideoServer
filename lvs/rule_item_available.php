@@ -7,6 +7,7 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 $rule_list = LVSRule::getRule(LVSRule::$item_available_table_name);
 $website_id_list = LVSWebsite::getWebsiteIdList();
 $actor_id_list = LVSActor::getActorIdList();
+$item_id_list = LVSItem::getItemIdList();
 $status_list = LVSRule::getStatusList();
 
 if($method == 'del' && !empty($rule_id)) {
@@ -29,6 +30,7 @@ Template::assign ('osadmin_action_confirm' , $confirm_html);
 Template::assign("rule_list",$rule_list);
 Template::assign("website_id_list",$website_id_list);
 Template::assign("actor_id_list",$actor_id_list);
+Template::assign("item_id_list",$item_id_list);
 Template::assign("status_list",$status_list);
 Template::display("lvs/rule_item_available.tpl");
 

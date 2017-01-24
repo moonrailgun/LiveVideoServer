@@ -32,7 +32,7 @@
         <td><{$actor_id_list[$rule_info.website_id][$rule_info.actor_id]}></td>
         <td><{$rule_info.machine_id}></td>
         <td><{$status_list[$rule_info.machine_status]}></td>
-        <td><{$rule_info.item_id}></td>
+        <td><{$item_id_list[$rule_info.item_id]}></td>
         <td><{$status_list[$rule_info.item_status]}></td>
         <td>
           <a href="rule_item_available_modify.php?rule_id=<{$rule_info.id}>" title= "修改" ><i class="icon-pencil"></i></a>

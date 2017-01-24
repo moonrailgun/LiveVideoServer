@@ -5,6 +5,37 @@ class LVSActor extends LVSBase
     private static $table_name = 'actor';
     private static $columns = array('actor_id', 'actor_nick_name', 'actor_website', 'actor_generated_name', 'actor_phone','actor_real_name','actor_currency','actor_is_actived');
 
+    public static function checkPassword($actor_generated_name, $actor_password){
+      $md5_pwd = md5($actor_password);
+      $db=self::__instance();
+      $condition["AND"] = array(
+        "actor_generated_name" => $actor_generated_name,
+        "actor_password"=>$md5_pwd
+      );
+
+      $list = $db->select(self::getTableName(), self::$columns, $condition);
+  		if ($list) {
+  			return $list[0];
+  		} else {
+  			return false;
+  		}
+    }
+
+    public static function resetPassword($actor_id){
+      if(!$actor_id || !is_numeric($actor_id)){
+        return false;
+      }
+      $db=self::__instance();
+
+      $condition=array("actor_id"=>$actor_id);
+      $data = array(
+        "actor_password"=>md5("123456")
+      );
+
+  		$id = $db->update(self::getTableName(), $data, $condition );
+  		return $id;
+    }
+
     public static function getTableName()
     {
         return parent::$table_prefix.self::$table_name;
