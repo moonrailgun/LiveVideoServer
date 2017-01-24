@@ -24,7 +24,6 @@ class LVSRule extends LVSBase{
 		return 2;
 	}
 
-	//TODO
 	public static function getWebsiteRule($website_id){
 		if(!$website_id){
 			return false;
@@ -57,8 +56,6 @@ class LVSRule extends LVSBase{
 			);
 			array_push($ruleData["commonRule"], $arr);
 		}
-
-		//TODO controllerDirectiveRule
 
 		//costControlRule
 		$tmp = self::getRuleListByCondition(self::$cost_table_name, $condition);
@@ -117,8 +114,6 @@ class LVSRule extends LVSBase{
 
 		//deviceDirective
 		$tmp = self::getRuleListByCondition(self::$item_available_table_name, $tool_valid_condition);
-		// $toolValidRule["deviceDirective"]["deviceID"] = $tmp[0]["machine_id"];
-		// $toolValidRule["deviceDirective"]["state"] = $tmp[0]["machine_status"];
 		$toolValidRule["deviceDirective"]["stateDescription"] =$status_id_list[$tmp[0]["machine_status"]];
 		$toolValidRule["deviceDirective"]["toolDirective"] = array();
 		foreach ($tmp as $key => $value) {
