@@ -21,6 +21,10 @@
           <label>主播</label>
           <select id="actor_id" name="actor_id" class="input-xlarge">
           </select>
+          <label>设备状态</label>
+          <select name="machine_status" class="input-xlarge">
+            <{html_options options=$status_list selected=$_POST.machine_status}>
+          </select>
           <label>道具</label>
           <select name="item_id" class="input-xlarge">
             <{html_options options=$item_id_list selected=$_POST.item_id}>

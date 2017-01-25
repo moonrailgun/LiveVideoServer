@@ -2,7 +2,7 @@
 
 require '../include/init.inc.php';
 
-$rule_id = $website_id = $actor_id = $machine_id = $machine_status = $item_id = $item_status = '';
+$rule_id = $website_id = $actor_id = $machine_status = $item_id = $item_status = '';
 extract($_REQUEST, EXTR_IF_EXISTS);
 
 if ($rule_id == '') {
@@ -12,13 +12,12 @@ if ($rule_id == '') {
   if (Common::isGet()) {
     $rule_info = LVSRule::getRuleByCondition(LVSRule::$item_available_table_name, $condition);
   } elseif (Common::isPost()) {
-    if ($rule_id == '' || $website_id == '' || $actor_id == '' || $machine_id == '' || $machine_status == '' || $item_id == '' || $item_status == '') {
+    if ($rule_id == '' || $website_id == '' || $actor_id == '' || $machine_status == '' || $item_id == '' || $item_status == '') {
         OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
     }else{
       $rule_data = array(
         'website_id' => $website_id,
         'actor_id' => $actor_id,
-        'machine_id' => $machine_id,
         'machine_status' => $machine_status,
         'item_id' => $item_id,
         'item_status' => $item_status

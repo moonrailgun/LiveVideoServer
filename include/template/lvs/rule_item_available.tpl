@@ -18,6 +18,7 @@
       <tr>
         <th style="width:80px">视频网名称</th>
         <th style="width:100px">主播名称</th>
+        <th style="width:100px">设备状态</th>
         <th style="width:100px">道具名称</th>
         <th style="width:100px">道具状态</th>
         <th style="width:80px">操作</th>
@@ -28,6 +29,7 @@
       <tr>
         <td><{$website_id_list[$rule_info.website_id]}></td>
         <td><{$actor_id_list[$rule_info.website_id][$rule_info.actor_id]}></td>
+        <td><{$status_list[$rule_info.machine_status]}></td>
         <td><{$item_id_list[$rule_info.item_id]}></td>
         <td><{$status_list[$rule_info.item_status]}></td>
         <td>

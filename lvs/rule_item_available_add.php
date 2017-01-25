@@ -1,25 +1,23 @@
 <?php
 require ('../include/init.inc.php');
-$website_id = $actor_id = $machine_id = $machine_status = $item_id = $item_status = '';
+$website_id = $actor_id = $machine_status = $item_id = $item_status = '';
 extract($_POST, EXTR_IF_EXISTS);
 
 if(Common::isPost()){
   $condition["AND"] = array(
     "website_id" => $website_id,
     "actor_id"=>$actor_id,
-    "machine_id"=>$machine_id,
     "item_id"=>$item_id
   );
   $exist = LVSRule::getRuleByCondition(LVSRule::$item_available_table_name, $condition);
   if($exist){
     OSAdmin::alert('error', ErrorMessage::NAME_CONFLICT);
-  }else if($website_id == '' || $actor_id == '' || $machine_id == '' || $machine_status == '' || $item_id == '' || $item_status == ''){
+  }else if($website_id == '' || $actor_id == '' || $machine_status == '' || $item_id == '' || $item_status == ''){
     OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
   }else{
     $data = array(
       "website_id" => $website_id,
       "actor_id" => $actor_id,
-      "machine_id" => $machine_id,
       "machine_status" => $machine_status,
       "item_id" => $item_id,
       "item_status" => $item_status

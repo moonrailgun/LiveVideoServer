@@ -114,6 +114,8 @@ class LVSRule extends LVSBase{
 
 		//deviceDirective
 		$tmp = self::getRuleListByCondition(self::$item_available_table_name, $tool_valid_condition);
+		$toolValidRule["deviceDirective"]["state"] = $tmp[0]["machine_status"];
+		$toolValidRule["deviceDirective"]["stateDescription"] =$status_id_list[$tmp[0]["machine_status"]];
 		$toolValidRule["deviceDirective"]["toolDirective"] = array();
 		foreach ($tmp as $key => $value) {
 			$arr = array(
