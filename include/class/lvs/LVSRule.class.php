@@ -45,17 +45,17 @@ class LVSRule extends LVSBase{
 			"actorName" => $tmp["actor_name"]
 		);
 
-		//commonRule
-		$tmp = self::getRule(self::$common_table_name);
-		$ruleData["commonRule"] = array();
-		foreach ($tmp as $key => $value) {
-			# code...
-			$arr = array(
-				"websiteID"=>$value["website_id"],
-				"timespan"=>$value["time_span"]
-			);
-			array_push($ruleData["commonRule"], $arr);
-		}
+		// //commonRule
+		// $tmp = self::getRule(self::$common_table_name);
+		// $ruleData["commonRule"] = array();
+		// foreach ($tmp as $key => $value) {
+		// 	# code...
+		// 	$arr = array(
+		// 		"websiteID"=>$value["website_id"],
+		// 		"timespan"=>$value["time_span"]
+		// 	);
+		// 	array_push($ruleData["commonRule"], $arr);
+		// }
 
 		//costControlRule
 		$tmp = self::getRuleListByCondition(self::$cost_table_name, $condition);
@@ -114,7 +114,6 @@ class LVSRule extends LVSBase{
 
 		//deviceDirective
 		$tmp = self::getRuleListByCondition(self::$item_available_table_name, $tool_valid_condition);
-		$toolValidRule["deviceDirective"]["stateDescription"] =$status_id_list[$tmp[0]["machine_status"]];
 		$toolValidRule["deviceDirective"]["toolDirective"] = array();
 		foreach ($tmp as $key => $value) {
 			$arr = array(
