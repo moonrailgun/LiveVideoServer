@@ -21,15 +21,27 @@ if (Common::isPost()) {
 
 		$id = LVSItemLog::addItem($item_data);
 		if($id) {
-			$res['resultCode'] = 1;
-			$res['id'] = $id;
+			// $res['resultCode'] = 1;
+			// $res['id'] = $id;
+			$res['result'][0] = array(
+				"result" => 1,
+				"tip"=>ErrorMessage::SUCCESS
+			);
 		}else{
-			$res['resultCode'] = 0;
-			$res['errorMessage'] = ErrorMessage::ERROR;
+			// $res['resultCode'] = 0;
+			// $res['errorMessage'] = ErrorMessage::ERROR;
+			$res['result'][0] = array(
+				"result" => 0,
+				"tip"=>ErrorMessage::ERROR
+			);
 		}
 	}else{
-		$res['resultCode'] = 0;
-		$res['errorMessage'] = ErrorMessage::NEED_PARAM;
+		// $res['resultCode'] = 0;
+		$res['result'][0] = array(
+			"result" => 0,
+			"tip"=>ErrorMessage::NEED_PARAM
+		);
+		// $res['errorMessage'] = ErrorMessage::NEED_PARAM;
 	}
 
 	echo json_encode($res);
