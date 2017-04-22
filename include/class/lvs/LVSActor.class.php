@@ -36,8 +36,24 @@ class LVSActor extends LVSBase
   		return $id;
     }
 
-    public static function getTableName()
-    {
+    public static function changePassword($actor_id, $old_password, $new_password){
+      if(!$actor_id || !is_numeric($actor_id)){
+        return false;
+      }
+
+      $db = self::__instance();
+
+      $condition["AND"]=array(
+        "actor_id"=>$actor_id, "actor_password"=>md5($old_password)
+      );
+      $data = array(
+        "actor_password"=>md5($new_password)
+      );
+      $id = $db->update(self::getTableName(), $data, $condition);
+  		return $id;
+    }
+
+    public static function getTableName(){
         return parent::$table_prefix.self::$table_name;
     }
 
