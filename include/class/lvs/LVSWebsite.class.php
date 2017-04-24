@@ -3,7 +3,7 @@
 class LVSWebsite extends LVSBase
 {
     private static $table_name = 'website';
-    private static $columns = array('website_id', 'website_name', 'website_short_name', 'website_desc');
+    private static $columns = array('website_id', 'website_name', 'website_short_name', 'remark');
 
     public static function getTableName()
     {

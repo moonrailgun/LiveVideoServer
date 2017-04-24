@@ -1,7 +1,6 @@
 <?php
 require ('../../include/init.inc.php');
 
-$method = '';
 extract($_REQUEST, EXTR_IF_EXISTS);
 
 $group_list = LVSGroup::getAllList();
