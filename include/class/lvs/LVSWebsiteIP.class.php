@@ -17,10 +17,19 @@ class LVSWebsiteIP extends LVSBase{
     return array();
   }
 
-  public static function getIPByWebsiteID($website_id) {
-    $db = self::__instance();
-    $condition["AND"] = array("website_id" => $website_id);
+	public static function getWebsiteIPListByWebsiteID($website_id){
+		$db = self::__instance();
+		$condition["AND"] = array("website_id" => $website_id);
     $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+    if ($list) {
+      return $list;
+    }
+    return array();
+	}
+
+  public static function getIPsByWebsiteID($website_id) {
+    $list = self::getWebsiteIPListByWebsiteID();
 
     if ($list) {
       $result = array();

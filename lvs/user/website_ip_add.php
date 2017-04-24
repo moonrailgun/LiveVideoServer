@@ -6,7 +6,7 @@ extract($_POST, EXTR_IF_EXISTS);
 $website_id_list = LVSWebsite::getWebsiteIdList();
 
 if(Common::isPost()) {
-  $ips = LVSWebsiteIP::getIPByWebsiteID($website_id);
+  $ips = LVSWebsiteIP::getIPsByWebsiteID($website_id);
   if(in_array($website_ip, $ips)){
     //exist
     OSAdmin::alert("error",ErrorMessage::NAME_CONFLICT);
