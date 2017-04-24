@@ -15,7 +15,7 @@ define('TEMPLATE_CONFIGS', ADMIN_BASE . '/config/');
 define('TEMPLATE_CACHE', ADMIN_BASE . '/cache/');
 
 // OSAdmin 常量
-define('ADMIN_URL' ,'http://localhost/LiveVideoServer');
+define('ADMIN_URL' ,'http://localhost:8080');
 define('ADMIN_TITLE' ,'管理后台');
 define('COMPANY_NAME' ,'视频直播管理平台');
 
