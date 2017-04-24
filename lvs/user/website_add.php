@@ -25,3 +25,6 @@ if(Common::isPost()){
     }
   }
 }
+
+Template::assign("website_data",$_POST);
+Template::display("lvs/user/website_modify.tpl");

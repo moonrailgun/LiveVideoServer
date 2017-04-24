@@ -35,7 +35,7 @@ class LVSWebsite extends LVSBase
       return $result;
     }
 
-    public static function getWebsiteInfoById($website_id){
+    public static function getWebsiteByID($website_id){
       if (!$website_id) {
   			return false;
   		}

@@ -19,7 +19,7 @@ if(!$group_id){
         'remark' => $remark
       );
       $result = LVSGroup::updateGroup($group_id, $group_data);
-      if ($result) {
+      if ($result>=0) {
         SysLog::addLog(UserSession::getUserName(), 'MODIFY', 'Group', $group_id, json_encode($group_data));
         Common::exitWithSuccess('更新完成', 'lvs/user/group.php');
       } else {
