@@ -201,4 +201,9 @@ class Common {
 		array_multisort($key_arrays,$sort_order,$sort_type,$arrays);
 		return $arrays;
 	}
+
+	// 判断是否为ip如果是返回ip地址.如果不是返回false
+	public static function isIp($ip){
+		return filter_var($ip, FILTER_VALIDATE_IP);
+	}
 }

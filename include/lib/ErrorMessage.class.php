@@ -30,4 +30,5 @@ class ErrorMessage {
 	const NOT_SAME_PWD = "两次密码不一致";
 	const WEBSITE_NAME_CONFLICT = "网站名已存在";
 	const WEBSITE_SHORT_NAME_CONFLICT = "网站简称已存在";
+	const NOT_VALID_IP = "不是一个合法的IP地址";
 }

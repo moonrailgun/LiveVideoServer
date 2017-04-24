@@ -1,8 +1,6 @@
 <?php
 require ('../../include/init.inc.php');
 
-extract($_REQUEST, EXTR_IF_EXISTS);
-
 $group_list = LVSGroup::getAllList();
 
 //追加操作的确认层

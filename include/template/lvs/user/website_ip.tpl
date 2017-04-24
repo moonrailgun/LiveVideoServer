@@ -7,8 +7,7 @@
 <{$osadmin_quick_note}>
 
 <div class="btn-toolbar" style="margin-bottom:2px;">
-  <a href="website_add.php" class="btn btn-primary"><i class="icon-plus"></i> 平台</a>
-  <a href="website_ip.php" class="btn btn-primary"><i class="icon-th-list"></i> 平台IP管理</a>
+  <a href="website_ip_add.php" class="btn btn-primary"><i class="icon-plus"></i> 平台IP</a>
 </div>
 
 <div class="block">
@@ -18,20 +17,20 @@
     <thead>
       <tr>
         <th style="width:120px">平台名称</th>
-        <th style="width:120px">平台缩写</th>
+        <th style="width:120px">平台IP</th>
         <th style="width:120px">备注</th>
         <th style="width:80px">操作</th>
       </tr>
     </thead>
     <tbody>
-      <{foreach name=website from=$website_list item=website}>
+      <{foreach name=website_ip from=$website_ip_list item=website_ip}>
       <tr>
-        <td><{$website.website_name}></td>
-        <td><{$website.website_short_name}></td>
-        <td><{$website.remark}></td>
+        <td><{$website_id_list[$website_ip.website_id]}></td>
+        <td><{$website_ip.website_ip}></td>
+        <td><{$website_ip.remark}></td>
         <td>
-          <a href="website_modify.php?website_id=<{$website.website_id}>" title= "修改" ><i class="icon-pencil"></i></a>
-          <a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="website_delete.php?website_id=<{$website.website_id}>" ></i></a>
+          <a href="website_ip_modify.php?website_id=<{$website_ip.website_id}>" title= "修改" ><i class="icon-pencil"></i></a>
+          <a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="website_ip_delete.php?website_id=<{$website_ip.website_id}>" ></i></a>
         </td>
       </tr>
       <{/foreach}>
