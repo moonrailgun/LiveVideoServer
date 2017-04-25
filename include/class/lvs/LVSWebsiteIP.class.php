@@ -17,7 +17,22 @@ class LVSWebsiteIP extends LVSBase{
     return array();
   }
 
-	public static function getWebsiteIPListByWebsiteID($website_id){
+	public static function getWebsiteIPByID($website_ip_id) {
+		if(!$website_ip_id){
+			return false;
+		}
+		$db = self::__instance();
+		$condition["AND"] = array("id" => $website_ip_id);
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+    if ($list) {
+      return $list[0];
+    }
+    return array();
+	}
+
+	// 返回数据表行
+	public static function getWebsiteIPListByWebsiteID($website_id) {
 		$db = self::__instance();
 		$condition["AND"] = array("website_id" => $website_id);
     $list = $db->select(self::getTableName(), self::$columns, $condition);
@@ -28,8 +43,9 @@ class LVSWebsiteIP extends LVSBase{
     return array();
 	}
 
+	// 返回ip数组
   public static function getIPsByWebsiteID($website_id) {
-    $list = self::getWebsiteIPListByWebsiteID();
+    $list = self::getWebsiteIPListByWebsiteID($website_id);
 
     if ($list) {
       $result = array();
@@ -51,4 +67,26 @@ class LVSWebsiteIP extends LVSBase{
 
     return $id;
   }
+
+	public static function updateWebsiteIP($website_ip_id, $website_ip_data) {
+		if (!$website_ip_data || !is_array($website_ip_data)) {
+			return false;
+		}
+		$db = self::__instance();
+		$condition = array('id' => $website_ip_id);
+		$id = $db->update(self::getTableName(), $website_ip_data, $condition);
+
+		return $id;
+	}
+
+	public static function deleteWebsiteIP($website_ip_id) {
+		if (!$website_ip_id) {
+			return false;
+		}
+		$db = self::__instance();
+		$condition = array('id' => $website_ip_id);
+		$result = $db->delete(self::getTableName(), $condition);
+
+		return $result;
+	}
 }
