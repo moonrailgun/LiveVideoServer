@@ -17,6 +17,18 @@ class LVSGroup extends LVSBase{
 		return array();
   }
 
+  //生成key为工会id value为工会名的所有工会数组
+  public static function getGroupIdList(){
+    $result = array();
+    $group_list = self::getAllList();
+    foreach ($group_list as $key => $value) {
+      $group_id = $value['group_id'];
+      $group_name = $value['group_name'];
+      $result[$group_id] = $group_name;
+    }
+    return $result;
+  }
+
   public static function getGroupByID($group_id) {
     if (!$group_id) {
       return false;

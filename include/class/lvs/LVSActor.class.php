@@ -3,13 +3,13 @@
 class LVSActor extends LVSBase
 {
     private static $table_name = 'actor';
-    private static $columns = array('actor_id', 'actor_nick_name', 'actor_website', 'actor_generated_name', 'actor_phone','actor_real_name','actor_currency','actor_is_actived');
+    private static $columns = array('id', 'website_id', 'group_id', 'real_name', 'sex','live_id','user_id','channel_id','address','is_invalid');
 
-    public static function checkPassword($actor_generated_name, $actor_password){
+    public static function checkPassword($user_id, $actor_password){
       $md5_pwd = md5($actor_password);
       $db=self::__instance();
       $condition["AND"] = array(
-        "actor_generated_name" => $actor_generated_name,
+        "user_id" => $user_id,
         "actor_password"=>$md5_pwd
       );
 
@@ -27,7 +27,7 @@ class LVSActor extends LVSBase
       }
       $db=self::__instance();
 
-      $condition=array("actor_id"=>$actor_id);
+      $condition=array("id"=>$actor_id);
       $data = array(
         "actor_password"=>md5("123456")
       );
@@ -44,7 +44,7 @@ class LVSActor extends LVSBase
       $db = self::__instance();
 
       $condition["AND"]=array(
-        "actor_id"=>$actor_id, "actor_password"=>md5($old_password)
+        "id"=>$actor_id, "actor_password"=>md5($old_password)
       );
       $data = array(
         "actor_password"=>md5($new_password)
@@ -60,7 +60,7 @@ class LVSActor extends LVSBase
     public static function getAllActor(){
       $db = self::__instance();
 
-      $condition = array("actor_is_actived" => "1");
+      $condition = array("is_invalid" => "0");
       $list = $db->select(self::getTableName(), self::$columns, $condition);
 
       if ($list) {
@@ -74,8 +74,8 @@ class LVSActor extends LVSBase
       $db = self::__instance();
 
       $condition['AND'] = array(
-        "actor_is_actived" => "1",
-        "actor_website" => $website_id
+        "is_invalid" => "0",
+        "website_id" => $website_id
       );
       $list = $db->select(self::getTableName(), "*", $condition);
 
@@ -91,9 +91,9 @@ class LVSActor extends LVSBase
       $result = array();
       $actor_list = self::getAllActor();
       foreach ($actor_list as $key => $value) {
-        $website_id = $value['actor_website'];
-        $actor_id = $value['actor_id'];
-        $actor_nick_name = $value['actor_nick_name'];
+        $website_id = $value['website_id'];
+        $actor_id = $value['id'];
+        $actor_nick_name = $value['real_name'];
         $result[$website_id][$actor_id] = $actor_nick_name;
       }
       return $result;
@@ -103,8 +103,8 @@ class LVSActor extends LVSBase
       $result = array();
       $actor_list = self::getActorListByWebsite($website_id);
       foreach ($actor_list as $key => $value) {
-        $actor_id = $value['actor_id'];
-        $actor_nick_name = $value['actor_nick_name'];
+        $actor_id = $value['id'];
+        $actor_nick_name = $value['real_name'];
         $result[$actor_id] = $actor_nick_name;
       }
       return $result;
@@ -116,7 +116,7 @@ class LVSActor extends LVSBase
   		}
   		$db=self::__instance();
   		$condition = array("AND" =>
-  						array("actor_generated_name[=]" => $generated_name,
+  						array("user_id[=]" => $generated_name,
   						)
   					);
   		$list = $db->select ( self::getTableName(), self::$columns, $condition );
@@ -133,8 +133,8 @@ class LVSActor extends LVSBase
       }
 
       $db = self::__instance();
-      $update_data = array('actor_is_actived' => 0);
-      $condition = array('actor_id' => $actor_id);
+      $update_data = array('is_invalid' => 1);
+      $condition = array('id' => $actor_id);
 
       $id = $db->update(self::getTableName(), $update_data, $condition);
 
@@ -147,8 +147,8 @@ class LVSActor extends LVSBase
       }
 
       $db = self::__instance();
-      $update_data = array('actor_is_actived' => 1);
-      $condition = array('actor_id' => $actor_id);
+      $update_data = array('is_invalid' => 0);
+      $condition = array('id' => $actor_id);
 
       $id = $db->update(self::getTableName(), $update_data, $condition);
 
@@ -188,7 +188,7 @@ class LVSActor extends LVSBase
       }
 
       $db = self::__instance();
-      $condition = array('actor_id' => $actor_id);
+      $condition = array('id' => $actor_id);
 
       $id = $db->update(self::getTableName(), $actor_data, $condition);
 
@@ -199,7 +199,7 @@ class LVSActor extends LVSBase
     public static function rebuildActorListById($actor_list){
       $result = array();
       foreach ($actor_list as $key => $value) {
-        $actor_id = $value["actor_id"];
+        $actor_id = $value["id"];
         $result[$actor_id] = $value;
       }
       return $result;
