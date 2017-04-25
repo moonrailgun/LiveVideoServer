@@ -77,12 +77,22 @@ class LVSActor extends LVSBase
         "is_invalid" => "0",
         "website_id" => $website_id
       );
-      $list = $db->select(self::getTableName(), "*", $condition);
+      $list = $db->select(self::getTableName(), self::$columns, $condition);
 
       if ($list) {
           return $list;
       }
 
+      return array();
+    }
+
+    public static function getActorListWithCondition($condition) {
+      $db = self::__instance();
+      $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+      if ($list) {
+        return $list;
+      }
       return array();
     }
 

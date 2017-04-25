@@ -10,6 +10,70 @@
   <a href="actor_add.php" class="btn btn-primary"><i class="icon-plus"></i> 主播</a>
 </div>
 
+<form class="form_search"  action="" method="GET" style="margin-bottom:0px">
+  <div style="float:left;margin-right:5px">
+    <label>工会名称</label>
+    <select id="group_id" name="group_id" class="input-xlarge">
+      <option value="">全部</option>
+      <{html_options options=$group_id_list selected=$_GET.group_id}>
+    </select>
+  </div>
+	<div style="float:left;margin-right:5px">
+		<label>平台名称</label>
+    <select id="website_id" name="website_id" class="input-xlarge">
+      <option value="">全部</option>
+      <{html_options options=$website_id_list selected=$_GET.website_id}>
+    </select>
+	</div>
+  <div style="clear:both;"></div>
+	<div style="float:left;margin-right:5px">
+		<label>常驻地</label>
+    <select id="province" name="province" class="input-xlarge">
+      <option value="">===请选择省===</option>
+      <{html_options values=$province_list output=$province_list selected=$_GET.province}>
+    </select>
+    <select id="city" name="city" class="input-xlarge" selected=<{$_GET.city}>>
+      <option value="">===请选择市===</option>
+    </select>
+    <script>
+    $(function(){
+      var updateCity = function(province){
+        $.get("/api/city.php", {
+          level:2,
+          province:province
+        }, function(data){
+          data = JSON.parse(data);
+          console.log(data);
+          var html = '<option value="">===请选择市===</option>';
+          for (var i = 0; i < data.length; i++) {
+            html += '<option value="'+data[i]+'">'+data[i]+'</option>';
+          }
+          $('#city').html(html).val('<{$_GET.city}>');
+        })
+      }
+
+      $('#province').change(function(){
+        var obj = $(this);
+        var val = obj.val();
+        console.log(obj);
+        if(!!val) {
+          updateCity(val);
+        }
+      });
+
+      var province = '<{$_GET.province}>';
+      if(!!province){
+        updateCity(province);
+      }
+    })
+    </script>
+	</div>
+	<div class="btn-toolbar" style="padding-top:15px;padding-bottom:0px;margin-bottom:0px">
+		<button type="submit" class="btn btn-primary">检索</button>
+	</div>
+	<div style="clear:both;"></div>
+</form>
+
 <div class="block">
   <a href="#page-stats" class="block-heading" data-toggle="collapse">主播列表</a>
   <div id="page-stats" class="block-body collapse in">
