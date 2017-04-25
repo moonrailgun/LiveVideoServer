@@ -12,19 +12,19 @@
 
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
   <div style="float:left;margin-right:5px">
-    <label>工会名称</label>
-    <select id="group_id" name="group_id" class="input-xlarge">
-      <option value="">全部</option>
-      <{html_options options=$group_id_list selected=$_GET.group_id}>
-    </select>
-  </div>
-	<div style="float:left;margin-right:5px">
 		<label>平台名称</label>
     <select id="website_id" name="website_id" class="input-xlarge">
       <option value="">全部</option>
       <{html_options options=$website_id_list selected=$_GET.website_id}>
     </select>
 	</div>
+  <div style="float:left;margin-right:5px">
+    <label>工会名称</label>
+    <select id="group_id" name="group_id" class="input-xlarge">
+      <option value="">全部</option>
+      <{html_options options=$group_id_list selected=$_GET.group_id}>
+    </select>
+  </div>
   <div style="clear:both;"></div>
 	<div style="float:left;margin-right:5px">
 		<label>常驻地</label>

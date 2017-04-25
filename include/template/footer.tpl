@@ -1,7 +1,7 @@
 					<footer>
               <hr>
               <p class="pull-right">LiveVideoServer - 直播平台管理系统</p>
-              <p>&copy; 2016 <a href="http://moonrailgun.com" target="_blank">moonrailgun</a></p>
+              <p>&copy; 2017 <a href="http://moonrailgun.com" target="_blank">moonrailgun</a></p>
           </footer>
 				</div>
 			</div>

@@ -3,7 +3,7 @@
 class LVSActor extends LVSBase
 {
     private static $table_name = 'actor';
-    private static $columns = array('id', 'website_id', 'group_id', 'real_name', 'sex','live_id','user_id','channel_id','address','is_invalid');
+    private static $columns = array('id', 'website_id', 'group_id', 'real_name', 'sex','live_id','user_id','channel_id','address','is_invalid','remark');
 
     public static function checkPassword($user_id, $actor_password){
       $md5_pwd = md5($actor_password);
@@ -186,6 +186,7 @@ class LVSActor extends LVSBase
           return false;
       }
       $actor_data["actor_password"] = md5("123456");
+      $actor_data["is_invalid"] = 0;
       $db = self::__instance();
       $id = $db->insert(self::getTableName(), $actor_data);
 
