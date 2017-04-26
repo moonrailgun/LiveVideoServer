@@ -1,7 +1,7 @@
 <?php
 require ('../../include/init.inc.php');
 
-$website_id = '';
+$website_id = $search = '';
 extract($_GET, EXTR_IF_EXISTS);
 
 $website_id_list = LVSWebsite::getWebsiteIdList();

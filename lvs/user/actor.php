@@ -1,7 +1,7 @@
 <?php
 require ('../../include/init.inc.php');
 
-$group_id = $website_id = $province = $city = '';
+$group_id = $website_id = $province = $city = $search = '';
 extract($_GET, EXTR_IF_EXISTS);
 
 

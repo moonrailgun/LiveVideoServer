@@ -8,9 +8,16 @@
 
 <div class="btn-toolbar" style="margin-bottom:2px;">
   <a href="website_ip_add.php" class="btn btn-primary"><i class="icon-plus"></i> 平台IP</a>
+  <a data-toggle="collapse" data-target="#search"  href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
 </div>
 
+<{if $_GET.search }>
+<div id="search" class="collapse in">
+<{else }>
+<div id="search" class="collapse out" >
+<{/if }>
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
+  <input type="hidden" name="search" value="1" >
 	<div style="float:left;margin-right:5px">
 		<label>平台名称</label>
     <select id="website_id" name="website_id" class="input-xlarge">
@@ -23,6 +30,7 @@
 	</div>
 	<div style="clear:both;"></div>
 </form>
+</div>
 
 <div class="block">
   <a href="#page-stats" class="block-heading" data-toggle="collapse">平台列表</a>
