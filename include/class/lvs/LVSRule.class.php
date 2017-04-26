@@ -201,7 +201,7 @@ class LVSRule extends LVSBase{
 		$db = self::__instance();
 		$list = $db->select($rule_table_name,'*',$condition);
 		if ($list) {
-			return $list[0];
+			return $list;
 		}
 		return array();
 	}
