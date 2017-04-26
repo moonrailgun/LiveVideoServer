@@ -9,6 +9,7 @@ class LVSRule extends LVSBase{
 	public static $gift2item_table_name = "lvs_rule_gift2item";
 	public static $item_available_table_name = "lvs_rule_item_available";
 	public static $item2directive_table_name = "lvs_rule_item2directive";
+	public static $acquisition_table_name = "lvs_acquisition_rule";
 
 	public static function getStatusList(){
 		$status_list[0] = "故障";
