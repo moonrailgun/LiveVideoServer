@@ -70,6 +70,19 @@ class LVSActor extends LVSBase
       return array();
     }
 
+    public static function getActorByID($actor_id) {
+      $db = self::__instance();
+      $condition['AND'] = array(
+        "is_invalid" => "0",
+        "id" => $actor_id
+      );
+      $list = $db->select(self::getTableName(), self::$columns, $condition);
+      if ($list) {
+        return $list[0];
+      }
+      return array();
+    }
+
     public static function getActorListByWebsite($website_id){
       $db = self::__instance();
 
