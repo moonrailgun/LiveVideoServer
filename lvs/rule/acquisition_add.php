@@ -6,28 +6,32 @@ extract($_POST, EXTR_IF_EXISTS);
 $website_id_list = LVSWebsite::getWebsiteIdList();
 
 if(Common::isPost()){
-  $condition["AND"] = array(
-    "website_id" => $website_id
-  );
-  $exist = LVSRule::getRuleByCondition(LVSRule::$acquisition_table_name, $condition);
-  if($exist){
-    OSAdmin::alert("error",ErrorMessage::NAME_CONFLICT);
+  if(!$website_id){
+    OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
   }else{
-    $data = array(
-      "website_id" => $website_id,
-      'user_id_field' => $user_id_field,
-      'user_name_field' => $user_name_field,
-      'actor_id_field' => $actor_id_field,
-      'actor_name_field' => $actor_name_field,
-      'gift_type_field' => $gift_type_field,
-      'gift_amount_field' => $gift_amount_field
+    $condition["AND"] = array(
+      "website_id" => $website_id
     );
-    $id = LVSRule::addRule(LVSRule::$acquisition_table_name, $data);
-    if($id >= 0){
-      SysLog::addLog(UserSession::getUserName(), 'ADD', 'AcquisitionRule' ,$id, json_encode($data));
-  		Common::exitWithSuccess ('规则添加成功','lvs/rule/acquisition.php');
+    $exist = LVSRule::getRuleByCondition(LVSRule::$acquisition_table_name, $condition);
+    if($exist){
+      OSAdmin::alert("error",ErrorMessage::NAME_CONFLICT);
     }else{
-      OSAdmin::alert("error");
+      $data = array(
+        "website_id" => $website_id,
+        'user_id_field' => $user_id_field,
+        'user_name_field' => $user_name_field,
+        'actor_id_field' => $actor_id_field,
+        'actor_name_field' => $actor_name_field,
+        'gift_type_field' => $gift_type_field,
+        'gift_amount_field' => $gift_amount_field
+      );
+      $id = LVSRule::addRule(LVSRule::$acquisition_table_name, $data);
+      if($id >= 0){
+        SysLog::addLog(UserSession::getUserName(), 'ADD', 'AcquisitionRule' ,$id, json_encode($data));
+    		Common::exitWithSuccess ('规则添加成功','lvs/rule/acquisition.php');
+      }else{
+        OSAdmin::alert("error");
+      }
     }
   }
 }elseif(Common::isGet()){
