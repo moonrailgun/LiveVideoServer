@@ -16,7 +16,7 @@ if(Common::isPost()){
     $group_id = LVSItemGroup::addGroup($group_data);
     if($group_id) {
       SysLog::addLog(UserSession::getUserName(), 'ADD', 'ItemGroup' ,$group_id, json_encode($group_data));
-			Common::exitWithSuccess ('工会添加成功','lvs/rule/item_group.php');
+			Common::exitWithSuccess ('道具组添加成功','lvs/rule/item_group.php');
     }else{
       OSAdmin::alert("error");
     }

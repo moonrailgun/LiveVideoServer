@@ -17,7 +17,7 @@ if(Common::isPost()) {
     $gift_id = LVSGift::addGift($gift_data);
     if($gift_id) {
       SysLog::addLog(UserSession::getUserName(), 'ADD', 'Gift' ,$gift_id, json_encode($gift_data));
-			Common::exitWithSuccess('主播添加成功','lvs/rule/gift.php');
+			Common::exitWithSuccess('礼物添加成功','lvs/rule/gift.php');
     }else{
       OSAdmin::alert("error");
     }

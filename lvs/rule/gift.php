@@ -5,9 +5,6 @@ $website_id = $search = '';
 extract($_GET, EXTR_IF_EXISTS);
 
 if($website_id){
-  $condition['AND'] = array(
-    'website_id' => $website_id
-  );
   $gift_list = LVSGift::getGiftBywebsiteID($website_id);
 }else{
   $gift_list = LVSGift::getAllGift();

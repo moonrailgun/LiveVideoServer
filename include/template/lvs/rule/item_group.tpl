@@ -26,8 +26,8 @@
         <td><{$group.group_name}></td>
         <td>
           <a href="item.php?group_id=<{$group.id}>" title= "编辑" ><i class="icon-list-alt"></i></a>
-          <a href="item_group_modify.php?group_id=<{$group.id}>" title= "修改" ><i class="icon-pencil"></i></a>
-          <a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="item_group_delete.php?group_id=<{$group.id}>" ></i></a>
+          <a href="item_group_modify.php?tool_type_id=<{$group.id}>" title= "修改" ><i class="icon-pencil"></i></a>
+          <a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="item_group_delete.php?tool_type_id=<{$group.id}>" ></i></a>
         </td>
       </tr>
       <{/foreach}>
