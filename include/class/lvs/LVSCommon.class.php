@@ -18,29 +18,25 @@ class LVSCommon extends LVSBase{
     }
     $db = self::__instance();
     $id = $db->insert($table_name, $data);
-    
+
     return $id;
   }
-  //
-  // public static function updateGift($gift_id, $gift_data){
-  //   if (!$gift_data || !is_array($gift_data)) {
-  //     return false;
-  //   }
-  //   $db = self::__instance();
-  //
-  //   $condition['id'] = $gift_id;
-	// 	$id = $db->update(self::getTableName(), $gift_data, $condition);
-	// 	return $id;
-  // }
-  //
-  // public static function deleteGift($gift_id){
-  //   if (!$gift_id) {
-  //     return false;
-  //   }
-  //   $db = self::__instance();
-  //   $condition = array('id' => $gift_id);
-  //   $result = $db->delete(self::getTableName(), $condition);
-  //
-  //   return $result;
-  // }
+
+  public static function update($table_name, $data, $condition){
+    if (!$data || !is_array($data) || !$condition || !is_array($condition)) {
+      return false;
+    }
+    $db = self::__instance();
+		$id = $db->update($table_name, $data, $condition);
+		return $id;
+  }
+
+  public static function delete($table_name, $condition){
+    if (!$table_name || !$condition) {
+      return false;
+    }
+    $db = self::__instance();
+    $result = $db->delete($table_name, $condition);
+    return $result;
+  }
 }

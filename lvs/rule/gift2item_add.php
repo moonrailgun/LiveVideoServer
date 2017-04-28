@@ -37,5 +37,5 @@ if(Common::isPost()) {
 Template::assign("website_id_list",$website_id_list);
 Template::assign("item_id_list",$item_id_list);
 Template::assign("gift_type_id_list",$gift_type_id_list);
-Template::assign("gift_data",$_POST);
+Template::assign("data",$_POST);
 Template::display("lvs/rule/gift2item_modify.tpl");
