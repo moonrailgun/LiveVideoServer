@@ -25,6 +25,17 @@ class LVSItem extends LVSBase{
 		return array ();
   }
 
+	public static function getItemIdList(){
+		$result = array();
+		$item_list = self::getAllItem();
+		foreach ($item_list as $key => $value) {
+			$item_id = $value['id'];
+			$item_name = $value['tool_name'];
+			$result[$item_id] = $item_name;
+		}
+		return $result;
+	}
+
   // public static function getItemIdList(){
   //   $list = self::getAllItem();
   //   $res = array();

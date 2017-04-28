@@ -18,6 +18,28 @@ class LVSGift extends LVSBase{
 		return array ();
   }
 
+	//生成key为礼物类型id value为礼物类型名的所有礼物类型数组
+	public static function getGiftTypeIdList() {
+		$result = array();
+		$gift_type_list = self::getAllGift();
+		foreach ($gift_type_list as $key => $value) {
+			$gift_type_id = $value['id'];
+			$gift_type_name = $value['gift_type'];
+			$result[$gift_type_id] = $gift_type_name;
+		}
+		return $result;
+	}
+	public static function getGiftTypeIdListByWebsiteId($website_id) {
+		$result = array();
+		$gift_type_list = self::getGiftBywebsiteID($website_id);
+		foreach ($gift_type_list as $key => $value) {
+			$gift_type_id = $value['id'];
+			$gift_type_name = $value['gift_type'];
+			$result[$gift_type_id] = $gift_type_name;
+		}
+		return $result;
+	}
+
   public static function getGiftByID($gift_id){
     $db = self::__instance();
 
