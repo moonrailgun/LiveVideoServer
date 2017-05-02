@@ -2,6 +2,7 @@
 class LVSCommon extends LVSBase{
 	public static $gift2senderInfo = "lvs_gift2senderInfo_rule";
 	public static $tool2directive = "lvs_tool2directive_rule";
+	public static $timespan = "lvs_website_timespan";
 
 	public static function query($query){
 		$db = self::__instance();

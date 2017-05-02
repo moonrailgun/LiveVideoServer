@@ -28,7 +28,7 @@ if(!$id) {
       $result = LVSCommon::update(LVSCommon::$tool2directive, $data, $condition);
       if($result >= 0){
         SysLog::addLog(UserSession::getUserName(), 'MODIFY', 'Item2Directive' ,$id, json_encode($data));
-  			Common::exitWithSuccess('礼物添加成功','lvs/rule/item2directive.php');
+  			Common::exitWithSuccess('道具转信号规则修改成功','lvs/rule/item2directive.php');
       }else {
         OSAdmin::alert('error');
       }

@@ -21,7 +21,7 @@ if(Common::isPost()) {
     $id = LVSCommon::insert(LVSCommon::$tool2directive, $data);
     if($id) {
       SysLog::addLog(UserSession::getUserName(), 'ADD', 'Item2Directive' ,$id, json_encode($data));
-			Common::exitWithSuccess('礼物添加成功','lvs/rule/item2directive.php');
+			Common::exitWithSuccess('道具转信号规则添加成功','lvs/rule/item2directive.php');
     }else{
       OSAdmin::alert("error");
     }
