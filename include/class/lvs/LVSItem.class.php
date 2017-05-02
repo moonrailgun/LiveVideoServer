@@ -15,6 +15,14 @@ class LVSItem extends LVSBase{
 		);
 	}
 
+	public static function getItemStateList() {
+		return array(
+			0 => '正常',
+			1 => '不可用',
+			2 => '故障',
+		);
+	}
+
   public static function getAllItem(){
     $db = self::__instance();
 
