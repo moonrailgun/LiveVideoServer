@@ -19,7 +19,6 @@
 <div id="search" class="collapse out">
 <{/if }>
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
-  <input type="hidden" name="search" value="1" >
 	<div style="float:left;margin-right:5px">
 		<label>平台</label>
     <select id="website_id" name="website_id" class="input-xlarge">

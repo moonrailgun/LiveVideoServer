@@ -8,7 +8,7 @@ $item_state_list = LVSItem::getItemStateList();
 
 if(Common::isPost()){
   if($item_state == ''){
-    Common::exitWithError('修改失败:缺少参数', 'lvs/rule/item_available.php',100000);
+    Common::exitWithError('修改失败:缺少参数', 'lvs/rule/item_available.php');
   }
 
   if($id) {
