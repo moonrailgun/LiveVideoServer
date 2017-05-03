@@ -3,7 +3,15 @@ require ('../../include/init.inc.php');
 $website_id = $group_id = $actor_id = $search = $add = '';
 extract($_GET, EXTR_IF_EXISTS);
 
-$query = 'SELECT * FROM	lvs_toolValid_rule LEFT JOIN lvs_actor ON lvs_toolValid_rule.actor_id = lvs_actor.id LEFT JOIN lvs_item ON lvs_toolValid_rule.tool_id = lvs_item.id';
+$col = join(',', array(
+  'lvs_toolValid_rule.id',
+  'lvs_actor.website_id',
+  'lvs_actor.group_id',
+  'lvs_actor.user_id',
+  'lvs_item.tool_name',
+  'lvs_toolValid_rule.state'
+));
+$query = "SELECT $col FROM	lvs_toolValid_rule LEFT JOIN lvs_actor ON lvs_toolValid_rule.actor_id = lvs_actor.id LEFT JOIN lvs_item ON lvs_toolValid_rule.tool_id = lvs_item.id";
 if($actor_id){
   $query += " WHERE actor_id = $actor_id";
 }

@@ -94,50 +94,57 @@ $('#actor_id').change(function(){
 <div class="block">
   <a href="#page-stats" class="block-heading" data-toggle="collapse">道具可用性</a>
   <div id="page-stats" class="block-body collapse in">
-    <div id="modify">
-      <form class="form_search"  action="item_available_add.php" method="POST" style="margin-bottom:0px">
-        <input type="hidden" id="_actor_id" name="actor_id" value=""/>
-        <div style="float:left;margin-right:5px">
-          <select id="item_state" name="item_state" class="input-xlarge">
-            <{html_options options=$item_state_list selected=$_GET.item_state}>
-          </select>
-      	</div>
-        <div class="btn-toolbar" style="padding-bottom:0px;margin-bottom:0px">
-          <button type="submit" class="btn btn-primary">修改</button>
-        </div>
-        <div style="clear:both;"></div>
-      </form>
+
+  <form id="modify" class="form_search"  action="item_available_modify.php" method="POST" style="margin-bottom:0px">
+    <input type="hidden" id="_actor_id" name="actor_id" value=""/>
+    <input type="hidden" id="id" name="id" value=""/>
+    <div style="float:left;margin-right:5px">
+      <select id="item_state" name="item_state" class="input-xlarge">
+        <{html_options options=$item_state_list selected=$_GET.item_state}>
+      </select>
+  	</div>
+    <div class="btn-toolbar" style="padding-bottom:0px;margin-bottom:0px">
+      <button type="submit" class="btn btn-primary">修改</button>
     </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>平台</th>
-        <th>工会</th>
-        <th>主播</th>
-        <th>道具名称</th>
-        <th>道具状态</th>
-        <th>选择</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <{foreach name=data from=$data_list item=data}>
-      <tr>
-        <td><{$website_id_list[$data.website_id]}></td>
-        <td><{$group_id_list[$data.group_id]}></td>
-        <td><{$data.user_id}></td>
-        <td><{$data.tool_name}></td>
-        <td><{$item_state_list[$data.state]}></td>
-        <td><input type="checkbox" name="select_ids[]" value="<{$data.id}>" style="margin-top:-4px;margin-left:6px;"></td>
-        <td>
-          <a href="item_available_modify.php?id=<{$data.id}>" title= "修改" >修改</a>
-        </td>
-      </tr>
-      <{/foreach}>
-    </tbody>
-  </table>
+    <div style="clear:both;"></div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>平台</th>
+          <th>工会</th>
+          <th>主播</th>
+          <th>道具名称</th>
+          <th>道具状态</th>
+          <th>选择</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <{foreach name=data from=$data_list item=data}>
+        <tr>
+          <td><{$website_id_list[$data.website_id]}></td>
+          <td><{$group_id_list[$data.group_id]}></td>
+          <td><{$data.user_id}></td>
+          <td><{$data.tool_name}></td>
+          <td><{$item_state_list[$data.state]}></td>
+          <td><input type="checkbox" name="select_ids[]" value="<{$data.id}>" style="margin-top:-4px;margin-left:6px;"></td>
+          <td>
+            <a onclick="submitChange('<{$data.id}>')" style="cursor:pointer" title= "修改" >修改</a>
+          </td>
+        </tr>
+        <{/foreach}>
+      </tbody>
+    </table>
+  </form>
   </div>
 </div>
+<script>
+var submitChange = function(id){
+  $('#modify').find('#id').val(id);
+  $('#modify').submit();
+}
+</script>
 
 
 
