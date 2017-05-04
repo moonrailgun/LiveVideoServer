@@ -2,7 +2,9 @@
 class LVSItemLog extends LVSBase{
 	private static $table_name = "item_log";
 
-	private static $columns = array('actorID','actorName','playerID','playerName','toolName','toolTypeName','totalCost','totalAmount','createdDate');
+	private static $columns = array(
+		'actorID','actorName','playerID','playerName','toolName','totalCost','totalAmount','createdDate'
+	);
 
 	public static function getTableName() {
 		return parent::$table_prefix.self::$table_name;
@@ -25,7 +27,7 @@ class LVSItemLog extends LVSBase{
 
 	public static function getAllItemLog() {
 		$db = self::__instance();
-		$list = $db->select( self::getTableName(),"*");
+		$list = $db->select( self::getTableName(),self::$columns);
 
 		if ($list) {
 			return $list;
@@ -44,6 +46,16 @@ class LVSItemLog extends LVSBase{
 
 		$list = $db->select(self::getTableName(),self::$columns,$condition);
 		if($list){
+			return $list;
+		}
+		return array ();
+	}
+
+	public static function getItemLogByCondition($condition) {
+		$db = self::__instance();
+		$list = $db->select(self::getTableName(), self::$columns, $condition);
+
+		if ($list) {
 			return $list;
 		}
 		return array ();

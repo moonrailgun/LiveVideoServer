@@ -200,5 +200,11 @@ class LVSStatis extends LVSBase{
 
 		return $result_list;
 	}
+
+	public static function getItemRank($condition = null) {
+		$item_log = LVSItemLog::getItemLogByCondition($condition);
+
+		// TODO
+	}
 }
 ?>
