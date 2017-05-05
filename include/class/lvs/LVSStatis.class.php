@@ -201,10 +201,29 @@ class LVSStatis extends LVSBase{
 		return $result_list;
 	}
 
-	public static function getItemRank($condition = null) {
+	public static function getItemRank($condition = null, $sort_by = 'totalCost') {
 		$item_log = LVSItemLog::getItemLogByCondition($condition);
 
-		// TODO
+		$result = array();
+		foreach ($item_log as $key => $value) {
+			$toolName = $value['toolName'];
+			if(array_key_exists($toolName, $result)){
+				$result[$toolName]['totalCost'] += $value['totalCost'];
+				$result[$toolName]['totalAmount'] += $value['totalAmount'];
+			}else{
+				$result[$toolName] = array(
+					'toolName' => $value['toolName'],
+					'totalCost' => $value['totalCost'],
+					'totalAmount' => $value['totalAmount']
+				);
+			}
+		}
+
+		foreach ($result as $key => $value) {
+			$result_order[$value[$sort_by]] = $value;
+		}
+		rsort($result_order);
+		return $result_order;
 	}
 }
 ?>

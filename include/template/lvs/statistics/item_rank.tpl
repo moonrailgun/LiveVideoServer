@@ -25,8 +25,8 @@
     </select>
     <label>排名条件</label>
     <select id="sort_by" name="sort_by" class="input-xlarge" selected="<{$_GET.sort_by}>">
-      <option value="coin">虚拟币</option>
-      <option value="count">次数</option>
+      <option value="totalCost">虚拟币</option>
+      <option value="totalAmount">次数</option>
     </select>
     <label>起止日期</label>
     <input type="text" id="start_date" name="start_date" value="<{$_GET.start_date}>" placeholder="起始时间" >
@@ -53,7 +53,9 @@
     <tbody>
       <{foreach name=rank from=$rank_list item=data}>
       <tr>
-        <!-- TODO -->
+        <td><{$smarty.foreach.rank.index + 1}></td>
+        <td><{$data.toolName}></td>
+        <td><{$data.totalCost}>/<{$data.totalAmount}></td>
       </tr>
       <{/foreach}>
     </tbody>
