@@ -10,14 +10,13 @@ if($search == 1) {
     // TODO
     $condition['AND'] = array(
       // 'website_id' => $website_id, TODO: 道具记录中的平台id如何获得
-      'createdDate' => [$start_date, $end_date]
+      'createdDate[<>]' => [$start_date, $end_date]
     );
     $rank_list = LVSStatis::getItemRank($condition, $sort_by);
   }
 }else{
   $rank_list = LVSStatis::getItemRank();
 }
-
 
 $website_id_list = LVSWebsite::getWebsiteIdList();
 
