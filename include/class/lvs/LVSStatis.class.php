@@ -230,14 +230,14 @@ class LVSStatis extends LVSBase{
 		}
 	}
 
-	public static function getItemLoyalty($condition = null, $analysis_by = 'totalCost') {
+	public static function getItemLoyalty($condition, $analysis_by = 'totalCost') {
 		$item_log = LVSItemLog::getItemLogByCondition($condition);
-
+		$dateList = Common::getDateFromRange($condition['AND']['createdDate[<>]'][0], $condition['AND']['createdDate[<>]'][1]);
 		$result = array();
-		for ($i=-6; $i < 1; $i++) {
-			$_d = date("Y-m-d",mktime(0,0,0,date("m"),date("d")+$i,date("Y")));
-			$result[$_d] = 0;
+		foreach ($dateList as $key => $value) {
+			$result[$value] = 0;
 		}
+
 		foreach ($item_log as $key => $value) {
 			$date = date('Y-m-d', strtotime($value['createdDate']));
 			if(array_key_exists($date, $result)){

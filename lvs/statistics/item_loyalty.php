@@ -3,14 +3,17 @@ require ('../../include/init.inc.php');
 $website_id = $item_id = $analysis_by = $start_date = $end_date = '';
 extract($_GET, EXTR_IF_EXISTS);
 
+$website_id_list = LVSWebsite::getWebsiteIdList();
+$item_id_list = LVSItem::getItemIdList();
+
 // TODO: 道具记录中的平台id如何获得
 // if(!!$website_id){
 //   $condition['AND']['website_id'] = $website_id;
 // }
 // TODO: 道具记录中的道具id如何获得
-// if(!!$item_id){
-//   $condition['AND']['item_id'] = $item_id;
-// }
+if(!!$item_id){
+  $condition['AND']['toolName'] = $item_id_list[$item_id];
+}
 if(!!$start_date && !!$end_date){
   $condition['AND']['createdDate[<>]'] = array($start_date, $end_date);
 }else{
@@ -24,9 +27,6 @@ if($analysis_by){
 }else{
   $list = LVSStatis::getItemLoyalty($condition);
 }
-
-$website_id_list = LVSWebsite::getWebsiteIdList();
-$item_id_list = LVSItem::getItemIdList();
 
 Template::assign('_GET', $_GET);
 Template::assign('loyalty_data', $list);

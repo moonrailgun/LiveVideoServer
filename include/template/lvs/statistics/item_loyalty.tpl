@@ -23,7 +23,7 @@
       <{html_options options=$item_id_list selected=$_GET.item_id}>
     </select>
     <label>排名条件</label>
-    <select id="sort_by" name="sort_by" class="input-xlarge" selected="<{$_GET.sort_by}>">
+    <select id="analysis_by" name="analysis_by" class="input-xlarge">
       <option value="totalCost">虚拟币</option>
       <option value="totalAmount">次数</option>
     </select>
@@ -58,6 +58,9 @@ $(function() {
 	var date=$( "#end_date" );
 	date.datepicker({dateFormat: "yy-mm-dd"});
 	date.datepicker("option", "firstDay", 1 );
+});
+$(function() {
+  $('#analysis_by').val("<{$_GET.analysis_by}>");
 });
 </script>
 <!-- <script>
