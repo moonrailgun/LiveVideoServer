@@ -212,7 +212,7 @@ class LVSStatis extends LVSBase{
 				$result[$toolName]['totalAmount'] += $value['totalAmount'];
 			}else{
 				$result[$toolName] = array(
-					'toolName' => $value['toolName'],
+					'toolName' => $toolName,
 					'totalCost' => $value['totalCost'],
 					'totalAmount' => $value['totalAmount']
 				);
@@ -248,6 +248,36 @@ class LVSStatis extends LVSBase{
 		}
 
 		return $result;
+	}
+
+	public static function getWebsiteRank($condition = null, $sort_by = 'totalCost') {
+		$item_log = LVSItemLog::getItemLogByCondition($condition);
+
+		$actor_website_id_list = LVSActor::getActorWebsiteIdList();
+		$result = array();
+		foreach ($item_log as $key => $value) {
+			$website_id = $actor_website_id_list[$value['actorID']];
+			if(array_key_exists($website_id, $result)){
+				$result[$website_id]['totalCost'] += $value['totalCost'];
+				$result[$website_id]['totalAmount'] += $value['totalAmount'];
+			}else{
+				$result[$website_id] = array(
+					'websiteId' => $website_id,
+					'totalCost' => $value['totalCost'],
+					'totalAmount' => $value['totalAmount']
+				);
+			}
+		}
+
+		foreach ($result as $key => $value) {
+			$result_order[$value[$sort_by]] = $value;
+		}
+		if($result_order) {
+			rsort($result_order);
+			return $result_order;
+		}else{
+			return array();
+		}
 	}
 }
 ?>
