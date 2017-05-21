@@ -6,11 +6,14 @@ extract($_GET, EXTR_IF_EXISTS);
 $website_id_list = LVSWebsite::getWebsiteIdList();
 $item_id_list = LVSItem::getItemIdList();
 
-// TODO: 道具记录中的平台id如何获得
-// if(!!$website_id){
-//   $condition['AND']['website_id'] = $website_id;
-// }
-// TODO: 道具记录中的道具id如何获得
+if(!!$website_id){
+  $actorList = LVSActor::getActorListByWebsite($website_id);
+  $actorIdList = array();
+  foreach ($actorList as $key => $value) {
+    array_push($actorIdList, $value['user_id']);
+  }
+  $condition['AND']['actorId'] = $actorIdList;
+}
 if(!!$item_id){
   $condition['AND']['toolName'] = $item_id_list[$item_id];
 }

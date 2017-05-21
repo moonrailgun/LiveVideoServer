@@ -10,7 +10,7 @@ if(Common::isPost()){
   $website_short_name = $website_info['website_short_name'];
   $generated_name = $website_short_name . $actor_nick_name;
 
-  $exist = LVSActor::getActorNameByGeneratedName($generated_name);
+  $exist = LVSActor::getActorInfoByGeneratedName($generated_name);
   if($exist){
     OSAdmin::alert("error",ErrorMessage::NAME_CONFLICT);
   }else{

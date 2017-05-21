@@ -133,7 +133,7 @@ class LVSActor extends LVSBase
       return $result;
     }
 
-    public static function getActorNameByGeneratedName($generated_name){
+    public static function getActorInfoByGeneratedName($generated_name){
       if (!$generated_name) {
   			return false;
   		}
