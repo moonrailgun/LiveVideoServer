@@ -282,7 +282,6 @@ class LVSStatis extends LVSBase{
 	public static function getGroupRank($condition = null, $sort_by = 'totalCost') {
 		$item_log = LVSItemLog::getItemLogByCondition($condition);
 
-		// TODO
 		$actor_group_id_list = LVSActor::getActorGroupIdList();
 		$result = array();
 		foreach ($item_log as $key => $value) {
@@ -308,6 +307,26 @@ class LVSStatis extends LVSBase{
 		}else{
 			return array();
 		}
+	}
+
+	public static function getGroupLoyalty($condition = null, $analysis_by = 'totalCost') {
+		$item_log = LVSItemLog::getItemLogByCondition($condition);
+		$dateList = Common::getDateFromRange($condition['AND']['createdDate[<>]'][0], $condition['AND']['createdDate[<>]'][1]);
+		$result = array();
+		foreach ($dateList as $key => $value) {
+			$result[$value] = 0;
+		}
+
+		foreach ($item_log as $key => $value) {
+			$date = date('Y-m-d', strtotime($value['createdDate']));
+			if(array_key_exists($date, $result)){
+				$result[$date] += $value[$analysis_by];
+			}else{
+				$result[$date] = $value[$analysis_by];
+			}
+		}
+
+		return $result;
 	}
 }
 ?>

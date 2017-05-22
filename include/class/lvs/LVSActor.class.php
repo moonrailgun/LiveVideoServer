@@ -98,6 +98,21 @@ class LVSActor extends LVSBase
 
       return array();
     }
+    public static function getActorListByGroup($group_id){
+      $db = self::__instance();
+
+      $condition['AND'] = array(
+        "is_invalid" => "0",
+        "group_id" => $group_id
+      );
+      $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+      if ($list) {
+          return $list;
+      }
+
+      return array();
+    }
 
     public static function getActorListWithCondition($condition) {
       $db = self::__instance();
