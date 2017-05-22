@@ -133,6 +133,17 @@ class LVSActor extends LVSBase
       }
       return $result;
     }
+    // 获取所有的用户 key 为user_id, value为website_id
+    public static function getActorGroupIdList() {
+      $result = array();
+      $actor_list = self::getAllActor();
+      foreach ($actor_list as $key => $value) {
+        $website_id = $value['group_id'];
+        $user_id = $value['user_id'];
+        $result[$user_id] = $website_id;
+      }
+      return $result;
+    }
 
     public static function getActorIdListByWebsite($website_id){
       $result = array();

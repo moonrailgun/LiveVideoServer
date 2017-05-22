@@ -279,5 +279,35 @@ class LVSStatis extends LVSBase{
 			return array();
 		}
 	}
+	public static function getGroupRank($condition = null, $sort_by = 'totalCost') {
+		$item_log = LVSItemLog::getItemLogByCondition($condition);
+
+		// TODO
+		$actor_group_id_list = LVSActor::getActorGroupIdList();
+		$result = array();
+		foreach ($item_log as $key => $value) {
+			$group_id = $actor_group_id_list[$value['actorID']];
+			if(array_key_exists($group_id, $result)){
+				$result[$group_id]['totalCost'] += $value['totalCost'];
+				$result[$group_id]['totalAmount'] += $value['totalAmount'];
+			}else{
+				$result[$group_id] = array(
+					'groupId' => $group_id,
+					'totalCost' => $value['totalCost'],
+					'totalAmount' => $value['totalAmount']
+				);
+			}
+		}
+
+		foreach ($result as $key => $value) {
+			$result_order[$value[$sort_by]] = $value;
+		}
+		if($result_order) {
+			rsort($result_order);
+			return $result_order;
+		}else{
+			return array();
+		}
+	}
 }
 ?>
