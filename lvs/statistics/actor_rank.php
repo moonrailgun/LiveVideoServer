@@ -3,6 +3,9 @@ require ('../../include/init.inc.php');
 $website_id = $sort_by = $start_date = $end_date = $search = '';
 extract($_GET, EXTR_IF_EXISTS);
 
+$website_id_list = LVSWebsite::getWebsiteIdList();
+$item_id_list = LVSItem::getItemIdList();
+
 if($search == 1) {
   if(!$sort_by) {
     OSAdmin::alert('error', ErrorMessage::NEED_PARAM);
@@ -15,7 +18,11 @@ if($search == 1) {
       }
       $condition['AND']['actorId'] = $actorIdList;
     }
-    
+
+    if(!!$item_id) {
+      $condition['AND']['toolName'] = $item_id_list[$item_id];
+    }
+
     if(!!$start_date && !!$end_date) {
       $condition['AND']['createdDate[<>]'] = array($start_date, $end_date);
     }else{
@@ -30,9 +37,8 @@ if($search == 1) {
   $rank_list = LVSStatis::getActorRank();
 }
 
-$website_id_list = LVSWebsite::getWebsiteIdList();
-
 Template::assign('_GET',$_GET);
 Template::assign('rank_list', $rank_list);
 Template::assign('website_id_list', $website_id_list);
+Template::assign('item_id_list', $item_id_list);
 Template::display('lvs/statistics/actor_rank.tpl');

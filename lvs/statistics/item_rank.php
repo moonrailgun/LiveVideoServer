@@ -4,7 +4,6 @@ $website_id = $item_id = $sort_by = $start_date = $end_date = $search = '';
 extract($_GET, EXTR_IF_EXISTS);
 
 $website_id_list = LVSWebsite::getWebsiteIdList();
-$item_id_list = LVSItem::getItemIdList();
 
 if($search == 1) {
   if(!$sort_by) {
@@ -17,10 +16,6 @@ if($search == 1) {
         array_push($actorIdList, $value['user_id']);
       }
       $condition['AND']['actorId'] = $actorIdList;
-    }
-
-    if(!!$item_id) {
-      $condition['AND']['toolName'] = $item_id_list[$item_id];
     }
 
     if(!!$start_date && !!$end_date) {
@@ -40,5 +35,4 @@ if($search == 1) {
 Template::assign('_GET',$_GET);
 Template::assign('rank_list', $rank_list);
 Template::assign('website_id_list', $website_id_list);
-Template::assign('item_id_list', $item_id_list);
 Template::display('lvs/statistics/item_rank.tpl');
