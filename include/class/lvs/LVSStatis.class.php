@@ -328,5 +328,35 @@ class LVSStatis extends LVSBase{
 
 		return $result;
 	}
+
+	public static function getActorRank($condition = null, $sort_by = 'totalCost') {
+		$item_log = LVSItemLog::getItemLogByCondition($condition);
+
+		$result = array();
+		foreach ($item_log as $key => $value) {
+			// IDEA: 这里可能会造成不统一。因为主播名不是通过userid从数据库中取而是直接获取的道具记录中的主播名
+			$actorName = $value['actorName'];
+			if(array_key_exists($actorName, $result)){
+				$result[$actorName]['totalCost'] += $value['totalCost'];
+				$result[$actorName]['totalAmount'] += $value['totalAmount'];
+			}else{
+				$result[$actorName] = array(
+					'actorName' => $actorName,
+					'totalCost' => $value['totalCost'],
+					'totalAmount' => $value['totalAmount']
+				);
+			}
+		}
+
+		foreach ($result as $key => $value) {
+			$result_order[$value[$sort_by]] = $value;
+		}
+		if($result_order) {
+			rsort($result_order);
+			return $result_order;
+		}else{
+			return array();
+		}
+	}
 }
 ?>

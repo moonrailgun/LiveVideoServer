@@ -39,7 +39,7 @@
 </div>
 
 <div class="block">
-  <a href="#page-stats" class="block-heading" data-toggle="collapse">道具粘性</a>
+  <a href="#page-stats" class="block-heading" data-toggle="collapse">平台粘性</a>
   <div id="page-stats" class="block-body collapse in">
     <div style="width:75%;">
       <canvas id="canvas"></canvas>

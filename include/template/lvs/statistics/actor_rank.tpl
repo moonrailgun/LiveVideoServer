@@ -18,6 +18,11 @@
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
   <input type="hidden" name="search" value="1" >
 	<div style="float:left;margin-right:5px">
+    <label>平台</label>
+    <select id="website_id" name="website_id" class="input-xlarge">
+      <option value="">全部</option>
+      <{html_options options=$website_id_list selected=$_GET.website_id}>
+    </select>
     <label>道具</label>
     <select id="item_id" name="item_id" class="input-xlarge">
       <option value="">全部</option>
@@ -40,13 +45,13 @@
 </div>
 
 <div class="block">
-  <a href="#page-stats" class="block-heading" data-toggle="collapse">工会排名</a>
+  <a href="#page-stats" class="block-heading" data-toggle="collapse">主播</a>
   <div id="page-stats" class="block-body collapse in">
   <table class="table table-striped">
     <thead>
       <tr>
         <th>名次</th>
-        <th>工会</th>
+        <th>主播</th>
         <th>虚拟币/次数</th>
       </tr>
     </thead>
@@ -54,7 +59,7 @@
       <{foreach name=rank from=$rank_list item=data}>
       <tr>
         <td><{$smarty.foreach.rank.index + 1}></td>
-        <td><{$group_id_list[$data.groupId]}></td>
+        <td><{$data.actorName}></td>
         <td><{$data.totalCost}>/<{$data.totalAmount}></td>
       </tr>
       <{/foreach}>
