@@ -308,7 +308,6 @@ class LVSStatis extends LVSBase{
 			return array();
 		}
 	}
-
 	public static function getGroupLoyalty($condition = null, $analysis_by = 'totalCost') {
 		$item_log = LVSItemLog::getItemLogByCondition($condition);
 		$dateList = Common::getDateFromRange($condition['AND']['createdDate[<>]'][0], $condition['AND']['createdDate[<>]'][1]);

@@ -16,7 +16,7 @@ if($search == 1) {
       foreach ($actorList as $key => $value) {
         array_push($actorIdList, $value['user_id']);
       }
-      $condition['AND']['actorId'] = $actorIdList;
+      $condition['AND']['actorID'] = $actorIdList;
     }
 
     if(!!$item_id) {

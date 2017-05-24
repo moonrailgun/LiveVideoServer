@@ -12,7 +12,7 @@ if(!!$website_id){
   foreach ($actorList as $key => $value) {
     array_push($actorIdList, $value['user_id']);
   }
-  $condition['AND']['actorId'] = $actorIdList;
+  $condition['AND']['actorID'] = $actorIdList;
 }
 if(!!$item_id){
   $condition['AND']['toolName'] = $item_id_list[$item_id];
