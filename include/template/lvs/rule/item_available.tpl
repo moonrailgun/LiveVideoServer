@@ -84,7 +84,6 @@ $('#group_id').change(tryUpdateActorList);
 </form>
 <script>
 $('#actor_id').change(function(){
-  console.log("a");
   $('#_actor_id').val($(this).val());
 })
 </script>

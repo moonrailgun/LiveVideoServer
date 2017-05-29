@@ -6,9 +6,15 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 
-<script src="<{$smarty.const.ADMIN_URL}>/assets/lib/Chart.js/Chart.min.js"></script>
+<div class="btn-toolbar" style="margin-bottom:2px;">
+    <a data-toggle="collapse" data-target="#search" href="#" title="检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
+</div>
 
+<{if $_GET.search }>
 <div id="search" class="collapse in">
+<{else }>
+<div id="search" class="collapse out" >
+<{/if }>
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
   <input type="hidden" name="search" value="1" >
 	<div style="float:left;margin-right:5px">
@@ -22,16 +28,12 @@
       <option value="">全部</option>
       <{html_options options=$group_id_list selected=$_GET.group_id}>
     </select>
-    <label>道具</label>
-    <select id="item_id" name="item_id" class="input-xlarge">
-      <option value="">全部</option>
-      <{html_options options=$item_id_list selected=$_GET.item_id}>
-    </select>
-		<label>主播</label>
+    <label>主播</label>
     <select id="actor_id" name="actor_id" class="input-xlarge">
+
     </select>
     <label>排名条件</label>
-    <select id="analysis_by" name="analysis_by" class="input-xlarge">
+    <select id="sort_by" name="sort_by" class="input-xlarge" selected="<{$_GET.sort_by}>">
       <option value="totalCost">虚拟币</option>
       <option value="totalAmount">次数</option>
     </select>
@@ -47,11 +49,26 @@
 </div>
 
 <div class="block">
-  <a href="#page-stats" class="block-heading" data-toggle="collapse">主播粘性</a>
+  <a href="#page-stats" class="block-heading" data-toggle="collapse">道具排名</a>
   <div id="page-stats" class="block-body collapse in">
-    <div style="width:75%;">
-      <canvas id="canvas"></canvas>
-    </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>名次</th>
+        <th>道具名称</th>
+        <th>虚拟币/次数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <{foreach name=rank from=$rank_list item=data}>
+      <tr>
+        <td><{$smarty.foreach.rank.index + 1}></td>
+        <td><{$data.toolName}></td>
+        <td><{$data.totalCost}>/<{$data.totalAmount}></td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
   </div>
 </div>
 
@@ -88,43 +105,6 @@ $(function() {
 	var date=$( "#end_date" );
 	date.datepicker({dateFormat: "yy-mm-dd"});
 	date.datepicker("option", "firstDay", 1 );
-});
-$(function() {
-  $('#analysis_by').val("<{$_GET.analysis_by}>");
-});
-</script>
-<script>
-var loyaltyData = JSON.parse('<{json_encode($loyalty_data)}>');
-var labels = [];
-var datas = [];
-
-for (var key in loyaltyData) {
-  if (loyaltyData.hasOwnProperty(key)) {
-    labels.push(key);
-    datas.push(loyaltyData[key]);
-  }
-}
-
-var myLineChart = new Chart($('#canvas'), {
-  type: 'line',
-  data: {
-    labels: labels,
-    datasets: [{
-      label: '<{($_GET.analysis_by==totalCost)?"虚拟币":"次数"}>',
-      data: datas,
-      backgroundColor: '#d5f0ff',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero:true
-        }
-      }]
-    }
-  }
 });
 </script>
 
