@@ -31,4 +31,5 @@ class ErrorMessage {
 	const WEBSITE_NAME_CONFLICT = "网站名已存在";
 	const WEBSITE_SHORT_NAME_CONFLICT = "网站简称已存在";
 	const NOT_VALID_IP = "不是一个合法的IP地址";
+	const DATA_EXIST = "数据已存在";
 }
