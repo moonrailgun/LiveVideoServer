@@ -15,9 +15,9 @@
     <div class="tab-pane active in" id="home">
       <form id="tab" method="post" action="" autocomplete="off">
         <label>充值金额 <span class="label label-important">不能重复</span></label>
-        <input id="recharge_amount" type="text" name="recharge_amount" value="<{$group_data.recharge_amount}>" class="input-xlarge" autofocus="true" required="true">
+        <input id="recharge_amount" type="text" name="recharge_amount" value="<{$data.recharge_amount}>" class="input-xlarge" autofocus="true" required="true">
         <label>充值折扣</label>
-        <input id="recharge_discount" type="text" name="recharge_discount" value="<{$group_data.recharge_discount}>" class="input-xlarge" autofocus="true" required="true">
+        <input id="recharge_discount" type="text" name="recharge_discount" value="<{$data.recharge_discount}>" class="input-xlarge" autofocus="true" required="true">
         <div class="btn-toolbar">
           <button type="submit" class="btn btn-primary"><strong>提交</strong></button>
         </div>

@@ -27,6 +27,5 @@ if(Common::isPost()){
   }
 }
 
-
 Template::assign("data",$_POST);
 Template::display("lvs/trade/recharge_discount_modify.tpl");
