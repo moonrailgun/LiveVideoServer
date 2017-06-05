@@ -11,7 +11,7 @@ $col = join(',', array(
   'lvs_item.tool_name',
   'lvs_toolValid_rule.state'
 ));
-$query = "SELECT $col FROM	lvs_toolValid_rule LEFT JOIN lvs_actor ON lvs_toolValid_rule.actor_id = lvs_actor.id LEFT JOIN lvs_item ON lvs_toolValid_rule.tool_id = lvs_item.id";
+$query = "SELECT $col FROM lvs_toolValid_rule LEFT JOIN lvs_actor ON lvs_toolValid_rule.actor_id = lvs_actor.id LEFT JOIN lvs_item ON lvs_toolValid_rule.tool_id = lvs_item.id";
 if($actor_id){
   $query += " WHERE actor_id = $actor_id";
 }

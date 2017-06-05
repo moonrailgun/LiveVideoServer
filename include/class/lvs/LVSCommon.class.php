@@ -5,6 +5,7 @@ class LVSCommon extends LVSBase{
 	public static $timespan = "lvs_website_timespan";
 	public static $itemValid = "lvs_toolValid_rule";
 	public static $recharge_discount = "lvs_recharge_discount";
+	public static $recharge_log = "lvs_recharge_log";
 
 	public static function query($query){
 		$db = self::__instance();
