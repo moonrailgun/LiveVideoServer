@@ -82,6 +82,8 @@ $(function() {
 <div class="block">
   <a href="#page-stats" class="block-heading" data-toggle="collapse">充值信息</a>
   <div id="page-stats" class="block-body collapse in">
+  <p>充值虚拟币总计：<{$data_count["SUM(recharge_amount)"]}></p>
+  <p>充值金额总计:<{$data_count["SUM(recharge_rmb)"]}></p>
   <table class="table table-striped">
     <thead>
       <tr>

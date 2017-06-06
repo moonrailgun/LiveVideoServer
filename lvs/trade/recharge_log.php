@@ -18,11 +18,14 @@ if(!!$start_date && !!$end_date) {
 
 $data_list = LVSCommon::query($query);
 
+$data_count = LVSCommon::query("SELECT SUM(recharge_amount), SUM(recharge_rmb) FROM lvs_recharge_log");
+
 $website_id_list = LVSWebsite::getWebsiteIdList();
 $group_id_list = LVSGroup::getGroupIdList();
 
 Template::assign("website_id_list",$website_id_list);
 Template::assign("group_id_list",$group_id_list);
 Template::assign("data_list",$data_list);
+Template::assign("data_count",$data_count[0]);
 Template::assign("osadmin_action_confirm",$confirm_html);
 Template::display("lvs/trade/recharge_log.tpl");
