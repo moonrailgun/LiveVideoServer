@@ -1,7 +1,21 @@
 <?php
 require ('../../include/init.inc.php');
+$actor_id= $start_date = $end_date = '';
+extract($_GET, EXTR_IF_EXISTS);
 
 $query = "SELECT * FROM lvs_recharge_log LEFT JOIN lvs_actor ON lvs_recharge_log.user_id = lvs_actor.user_id";
+if($actor_id) {
+  $query .= " WHERE lvs_actor.id = $actor_id";
+}
+
+if(!!$start_date && !!$end_date) {
+  if ($actor_id) {
+    $query .= ' AND lvs_recharge_log.recharge_time BETWEEN "'.$start_date.'" AND "'.$end_date.'" ';
+  }else {
+    $query .= ' WHERE lvs_recharge_log.recharge_time BETWEEN "'.$start_date.'" AND "'.$end_date.'" ';
+  }
+}
+
 $data_list = LVSCommon::query($query);
 
 $website_id_list = LVSWebsite::getWebsiteIdList();

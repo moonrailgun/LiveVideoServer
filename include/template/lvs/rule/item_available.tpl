@@ -11,8 +11,6 @@
   <a data-toggle="collapse" data-target="#add"  href="#" title="添加"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-plus"></i></button></a>
 </div>
 
-
-
 <{if !$_GET.search }>
 <div id="search" class="collapse in">
 <{else }>
