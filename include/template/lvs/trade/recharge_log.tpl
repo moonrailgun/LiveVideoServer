@@ -100,7 +100,7 @@ $(function() {
     <tbody>
       <{foreach name=data from=$data_list item=data}>
       <tr>
-        <td><{$data.recharge_id}></td>
+        <td><{$data.order_id}></td>
         <td><{$data.user_id}></td>
         <td><{$website_id_list[$data.website_id]}></td>
         <td><{$group_id_list[$data.group_id]}></td>
