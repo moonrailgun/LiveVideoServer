@@ -17,21 +17,21 @@
     <div class="dialog">
 		<{$osadmin_action_alert}>
         <div class="block">
-            <p class="block-heading">登入</p>
+            <p class="block-heading">忘记密码</p>
             <div class="block-body">
                 <form name="loginForm" method="post" action="">
-                    <label>账号</label>
+                    <label>用户名</label>
                     <input type="text" class="span12" name="user_name" value="<{$_POST.user_name}>" required="true" autofocus="true">
-                    <label>密码</label>
-                    <input type="password" class="span12" name="password" value = "<{$_POST.password}>" required="true" >
+                    <label>邮箱</label>
+                    <input type="text" class="span12" name="user_email" value = "<{$_POST.user_email}>" required="true" >
 
                      <label>验证码</label>
 					<input type="text" name="verify_code" class="span4" placeholder="输入验证码" autocomplete="off" required="required">
 					<a href="#"><img title="验证码" id="verify_code" src="<{$smarty.const.ADMIN_URL}>/panel/verify_code_cn.php" style="vertical-align:top"></a>
-					<div class="clearfix"><input type="checkbox" name="remember" value="remember-me"> 记住我
-					<span class="label label-info">一个月内不用再次登入</span>
-					<input type="submit" class="btn btn-primary pull-right" name="loginSubmit" value="登入"/>
-          <a href="<{$smarty.const.ADMIN_URL}>/panel/forget_password.php" class="btn btn-primary pull-right" style="margin:0 2px;">忘记密码</a></div>
+          <div class="clearfix">
+					<input type="submit" class="btn btn-primary pull-right" name="loginSubmit" value="联系管理员"/>
+          <a href="<{$smarty.const.ADMIN_URL}>/panel/forget_password.php" class="btn btn-primary pull-right" style="margin:0 2px;">密码发送</a></div>
+          </div>
 
                 </form>
             </div>
