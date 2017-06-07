@@ -82,7 +82,7 @@ $(function() {
 <div class="block">
   <a href="#page-stats" class="block-heading" data-toggle="collapse">充值信息</a>
   <div id="page-stats" class="block-body collapse in">
-  <p>消费虚拟币总计：<{$data_count["SUM(consume_amount)"]}></p>
+  <p>消费虚拟币总计：<{$data_count[0]}></p>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -100,9 +100,9 @@ $(function() {
         <td><{$data.user_id}></td>
         <td><{$website_id_list[$data.website_id]}></td>
         <td><{$group_id_list[$data.group_id]}></td>
-        <td><{$data.consume_time}></td>
-        <td><{$data.consume_amount}></td>
-        <td><{$data.consume_tool_name}></td>
+        <td><{$data.createdDate}></td>
+        <td><{$data.totalCost}></td>
+        <td><{$data.toolName}></td>
       </tr>
       <{/foreach}>
     </tbody>

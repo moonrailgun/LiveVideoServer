@@ -7,10 +7,10 @@ class Medoo{
 	protected $password = '';
 	protected $database_name= '';
 	protected $pdo =null;
-	
+
 	// Optional
 	protected $charset = 'utf8';
-	
+
 	public function __construct($database){
 		try {
 			global $DATABASE_LIST;
@@ -19,21 +19,21 @@ class Medoo{
             $this->username=$DATABASE_LIST[$database]['username'];
             $this->password=$DATABASE_LIST[$database]['password'];
             $this->database_name=$DATABASE_LIST[$database]['db_name'];
-            
+
             $this->pdo=null;
             $this->pdo = new PDO('mysql:host=' . $this->server . ';port='.$this->port.';dbname=' . $this->database_name, $this->username,$this->password);
 			$this->pdo->exec('SET NAMES \'' . $this->charset . '\'');
-		 
+
 		}
 		catch (PDOException $e) {
 			echo $e->getMessage();
 		}
 	}
-	
+
 	public function query($query)
 	{
 		$this->queryString = $query;
-		
+
 		return $this->pdo->query($query);
 	}
 
@@ -60,7 +60,7 @@ class Medoo{
 
 		return implode($temp, ',');
 	}
-	
+
 	protected function inner_conjunct($data, $conjunctor, $outer_conjunctor)
 	{
 		$haystack = array();
@@ -248,7 +248,7 @@ class Medoo{
 
 		return $where_clause;
 	}
-		
+
 	public function select($table, $columns, $where = null)
 	{
 		$where_clause = $this->where_clause($where);
@@ -274,13 +274,13 @@ class Medoo{
 
 		return $query ? $query->fetchAll(PDO::FETCH_ASSOC)
 		 : false;
-		
+
 		return $query ? $query->fetchAll(
 			(is_string($columns) && $columns != '*') ? PDO::FETCH_COLUMN : PDO::FETCH_ASSOC
 		) : false;
-		
+
 	}
-		
+
 	public function insert($table, $data)
 	{
 		$keys = implode(',', array_keys($data));
@@ -292,10 +292,10 @@ class Medoo{
 		}
 
 		$this->exec('INSERT INTO ' . $table . ' (' . $keys . ') VALUES (' . $this->data_implode(array_values($values), ',') . ')');
-		
+
 		return $this->pdo->lastInsertId();
 	}
-	
+
 	public function update($table, $data, $where = null)
 	{
 		$fields = array();
@@ -322,15 +322,15 @@ class Medoo{
 				}
 			}
 		}
-		
+
 		return $this->exec('UPDATE ' . $table . ' SET ' . implode(',', $fields) . $this->where_clause($where));
 	}
-	
+
 	public function delete($table, $where)
 	{
 		return $this->exec('DELETE FROM ' . $table . $this->where_clause($where));
 	}
-	
+
 	public function replace($table, $columns, $search = null, $replace = null, $where = null)
 	{
 		if (is_array($columns))

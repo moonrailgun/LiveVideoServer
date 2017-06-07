@@ -3,21 +3,26 @@ require ('../../include/init.inc.php');
 $actor_id = $start_date = $end_date = '';
 extract($_GET, EXTR_IF_EXISTS);
 
-$query = "SELECT * FROM lvs_consume LEFT JOIN lvs_actor ON lvs_consume.user_id = lvs_actor.user_id";
-if(!!$actor_id) {
-  $query .= " WHERE lvs_actor.id = $actor_id";
+if(!$start_date || !$end_date) {
+  $start_date = date("Y-m-d",mktime(0,0,0,date("m"),date("d")-6,date("Y")));
+  $end_date = date("Y-m-d",mktime(0,0,0,date("m"),date("d")+1,date("Y")));
 }
 
+$query = "SELECT * FROM lvs_item_log LEFT JOIN lvs_actor ON lvs_item_log.actorID = lvs_actor.user_id";
+if($actor_id) {
+  $query .= " WHERE lvs_actor.id = $actor_id";
+}
 if(!!$start_date && !!$end_date) {
   if ($actor_id) {
-    $query .= ' AND lvs_consume.consume_time BETWEEN "'.$start_date.'" AND "'.$end_date.'" ';
+    $query .= ' AND lvs_item_log.createdDate BETWEEN "'.$start_date.'" AND "'.$end_date.'" ';
   }else {
-    $query .= ' WHERE lvs_consume.consume_time BETWEEN "'.$start_date.'" AND "'.$end_date.'" ';
+    $query .= ' WHERE lvs_item_log.createdDate BETWEEN "'.$start_date.'" AND "'.$end_date.'" ';
   }
 }
 
+
 $data_list = LVSCommon::query($query);
-$data_count = LVSCommon::query("SELECT SUM(consume_amount) FROM lvs_consume");
+$data_count = LVSCommon::query("SELECT SUM(totalCost) FROM lvs_item_log");
 
 $website_id_list = LVSWebsite::getWebsiteIdList();
 $group_id_list = LVSGroup::getGroupIdList();
