@@ -11,7 +11,7 @@ if(Common::isGet()){
 
 	//====整理数组
 	$all_tool_name_list = array();
-	$res = array();
+	$data = array();
 	//获取所有给该主播送道具的玩家名单
 	foreach ($list as $key => $item) {
 		array_push($all_tool_name_list, $item['toolName']);
@@ -22,14 +22,21 @@ if(Common::isGet()){
 		$temp_array = array();
 		$temp_array['actorID'] = $actorID;
 		$temp_array['actorName'] = $list[0]['actorName'];
+		$temp_array['toolTypeName'] = LVSStatis::getToolTypeNameFromItemLogList($list,$toolName);
 		$temp_array['toolName'] = $toolName;
-		$temp_array['playerName'] = LVSStatis::getToolTypeNameFromItemLogList($list,$toolName);
-		$data = LVSStatis::getToolCostDataListFromItemLogList($list,$toolName);
-		$temp_array['totalCost'] = $data['totalCost'];
-		$temp_array['totalAmount'] = $data['totalAmount'];
-		$temp_array['list'] = $data['list'];
-		array_push($res,$temp_array);
+		$temp_data = LVSStatis::getToolCostDataListFromItemLogList($list,$toolName);
+		$temp_array['totalCost'] = $temp_data['totalCost'];
+		$temp_array['totalAmount'] = $temp_data['totalAmount'];
+		$temp_array['list'] = $temp_data['list'];
+		array_push($data,$temp_array);
 	}
+
+	$res['statusCode'] = 1;
+	$res['resultCode'] = 1;
+	if(count($data) == 0) {
+		$res['resultCode'] = 0;
+	}
+	$res['data'] = $data;
 	echo json_encode($res);
 }
 ?>

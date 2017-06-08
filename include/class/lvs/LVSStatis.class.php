@@ -6,7 +6,7 @@ class LVSStatis extends LVSBase{
 		return parent::$table_prefix.self::$table_name;
 	}
 
-	private static $columns = array('actorID','actorName','playerID','playerName','toolName','toolTypeName','totalCost','totalAmount','createdDate');
+	private static $columns = array('actorID','actorName','playerID','playerName','toolName','totalCost','totalAmount','createdDate');
 
 	//根据时间与主播ID获取统计信息
 	public static function statisByActorID($actorID,$sendStartTime,$sendEndTime){
@@ -42,7 +42,6 @@ class LVSStatis extends LVSBase{
 				$totalCost += $value['totalCost'];
 
 				$tmp['toolName'] = $value['toolName'];
-				$tmp['toolTypeName'] = $value['toolTypeName'];
 				$tmp['totalCost'] = $value['totalCost'];
 				$tmp['totalAmount'] = $value['totalAmount'];
 				array_push($tmp_list, $tmp);

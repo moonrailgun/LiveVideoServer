@@ -9,14 +9,21 @@ if(Common::isGet()){
 
 	$list = LVSStatis::statisByActorIDAndItemData($actorID,$sendStartTime,$sendEndTime,$toolName,$playerID);
 
-	$res = array();
+	$data = array();
 	foreach ($list as $key => $value) {
 		$tmp = array();
 		$tmp['time'] = $value['createdDate'];
 		$tmp['toolCost'] = $value['totalCost'];
 		$tmp['toolUserAmount'] = $value['totalAmount'];
-		$res[$key] = $tmp;
+		$data[$key] = $tmp;
 	}
+
+	$res['statusCode'] = 1;
+	$res['resultCode'] = 1;
+	if(count($data) == 0) {
+		$res['resultCode'] = 0;
+	}
+	$res['data'] = $data;
 	echo json_encode($res);
 }
 
