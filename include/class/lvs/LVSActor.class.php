@@ -27,243 +27,243 @@ class LVSActor extends LVSBase
       }
       $db=self::__instance();
 
-      $condition=array("id"=>$actor_id);
-      $data = array(
-        "actor_password"=>md5("123456")
-      );
+    $condition=array("id"=>$actor_id);
+    $data = array(
+      "actor_password"=>md5("123456")
+    );
 
-  		$id = $db->update(self::getTableName(), $data, $condition );
-  		return $id;
+		$id = $db->update(self::getTableName(), $data, $condition );
+		return $id;
+  }
+
+  public static function changePassword($actor_id, $old_password, $new_password){
+    if(!$actor_id || !is_numeric($actor_id)){
+      return false;
     }
 
-    public static function changePassword($actor_id, $old_password, $new_password){
-      if(!$actor_id || !is_numeric($actor_id)){
-        return false;
-      }
+    $db = self::__instance();
 
-      $db = self::__instance();
+    $condition["AND"]=array(
+      "id"=>$actor_id, "actor_password"=>md5($old_password)
+    );
+    $data = array(
+      "actor_password"=>md5($new_password)
+    );
+    $id = $db->update(self::getTableName(), $data, $condition);
+		return $id;
+  }
 
-      $condition["AND"]=array(
-        "id"=>$actor_id, "actor_password"=>md5($old_password)
-      );
-      $data = array(
-        "actor_password"=>md5($new_password)
-      );
-      $id = $db->update(self::getTableName(), $data, $condition);
-  		return $id;
-    }
+  public static function getTableName(){
+      return parent::$table_prefix.self::$table_name;
+  }
 
-    public static function getTableName(){
-        return parent::$table_prefix.self::$table_name;
-    }
+  public static function getAllActor(){
+    $db = self::__instance();
 
-    public static function getAllActor(){
-      $db = self::__instance();
+    $condition = array("is_invalid" => "0");
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
 
-      $condition = array("is_invalid" => "0");
-      $list = $db->select(self::getTableName(), self::$columns, $condition);
-
-      if ($list) {
-          return $list;
-      }
-
-      return array();
-    }
-
-    public static function getActorByID($actor_id) {
-      $db = self::__instance();
-      $condition['AND'] = array(
-        "is_invalid" => "0",
-        "id" => $actor_id
-      );
-      $list = $db->select(self::getTableName(), self::$columns, $condition);
-      if ($list) {
-        return $list[0];
-      }
-      return array();
-    }
-
-    public static function getActorListByWebsite($website_id){
-      $db = self::__instance();
-
-      $condition['AND'] = array(
-        "is_invalid" => "0",
-        "website_id" => $website_id
-      );
-      $list = $db->select(self::getTableName(), self::$columns, $condition);
-
-      if ($list) {
-          return $list;
-      }
-
-      return array();
-    }
-    public static function getActorListByGroup($group_id){
-      $db = self::__instance();
-
-      $condition['AND'] = array(
-        "is_invalid" => "0",
-        "group_id" => $group_id
-      );
-      $list = $db->select(self::getTableName(), self::$columns, $condition);
-
-      if ($list) {
-          return $list;
-      }
-
-      return array();
-    }
-
-    public static function getActorListWithCondition($condition) {
-      $db = self::__instance();
-      $list = $db->select(self::getTableName(), self::$columns, $condition);
-
-      if ($list) {
+    if ($list) {
         return $list;
-      }
-      return array();
     }
 
-    // $actor_nick_name = $list[$website_id][$actor_id]
-    public static function getActorIdList(){
-      $result = array();
-      $actor_list = self::getAllActor();
-      foreach ($actor_list as $key => $value) {
-        $website_id = $value['website_id'];
-        $actor_id = $value['id'];
-        $actor_nick_name = $value['real_name'];
-        $result[$website_id][$actor_id] = $actor_nick_name;
-      }
-      return $result;
+    return array();
+  }
+
+  public static function getActorByID($actor_id) {
+    $db = self::__instance();
+    $condition['AND'] = array(
+      "is_invalid" => "0",
+      "id" => $actor_id
+    );
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
+    if ($list) {
+      return $list[0];
+    }
+    return array();
+  }
+
+  public static function getActorListByWebsite($website_id){
+    $db = self::__instance();
+
+    $condition['AND'] = array(
+      "is_invalid" => "0",
+      "website_id" => $website_id
+    );
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+    if ($list) {
+        return $list;
     }
 
-    // 获取所有的用户 key 为user_id, value为website_id
-    public static function getActorWebsiteIdList() {
-      $result = array();
-      $actor_list = self::getAllActor();
-      foreach ($actor_list as $key => $value) {
-        $website_id = $value['website_id'];
-        $user_id = $value['user_id'];
-        $result[$user_id] = $website_id;
-      }
-      return $result;
-    }
-    // 获取所有的用户 key 为user_id, value为website_id
-    public static function getActorGroupIdList() {
-      $result = array();
-      $actor_list = self::getAllActor();
-      foreach ($actor_list as $key => $value) {
-        $website_id = $value['group_id'];
-        $user_id = $value['user_id'];
-        $result[$user_id] = $website_id;
-      }
-      return $result;
+    return array();
+  }
+  public static function getActorListByGroup($group_id){
+    $db = self::__instance();
+
+    $condition['AND'] = array(
+      "is_invalid" => "0",
+      "group_id" => $group_id
+    );
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+    if ($list) {
+        return $list;
     }
 
-    public static function getActorIdListByWebsite($website_id){
-      $result = array();
-      $actor_list = self::getActorListByWebsite($website_id);
-      foreach ($actor_list as $key => $value) {
-        $actor_id = $value['id'];
-        $actor_nick_name = $value['real_name'];
-        $result[$actor_id] = $actor_nick_name;
-      }
-      return $result;
+    return array();
+  }
+
+  public static function getActorListWithCondition($condition) {
+    $db = self::__instance();
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
+
+    if ($list) {
+      return $list;
+    }
+    return array();
+  }
+
+  // $actor_nick_name = $list[$website_id][$actor_id]
+  public static function getActorIdList(){
+    $result = array();
+    $actor_list = self::getAllActor();
+    foreach ($actor_list as $key => $value) {
+      $website_id = $value['website_id'];
+      $actor_id = $value['id'];
+      $actor_nick_name = $value['real_name'];
+      $result[$website_id][$actor_id] = $actor_nick_name;
+    }
+    return $result;
+  }
+
+  // 获取所有的用户 key 为user_id, value为website_id
+  public static function getActorWebsiteIdList() {
+    $result = array();
+    $actor_list = self::getAllActor();
+    foreach ($actor_list as $key => $value) {
+      $website_id = $value['website_id'];
+      $user_id = $value['user_id'];
+      $result[$user_id] = $website_id;
+    }
+    return $result;
+  }
+  // 获取所有的用户 key 为user_id, value为website_id
+  public static function getActorGroupIdList() {
+    $result = array();
+    $actor_list = self::getAllActor();
+    foreach ($actor_list as $key => $value) {
+      $website_id = $value['group_id'];
+      $user_id = $value['user_id'];
+      $result[$user_id] = $website_id;
+    }
+    return $result;
+  }
+
+  public static function getActorIdListByWebsite($website_id){
+    $result = array();
+    $actor_list = self::getActorListByWebsite($website_id);
+    foreach ($actor_list as $key => $value) {
+      $actor_id = $value['id'];
+      $actor_nick_name = $value['real_name'];
+      $result[$actor_id] = $actor_nick_name;
+    }
+    return $result;
+  }
+
+  public static function getActorInfoByGeneratedName($generated_name){
+    if (!$generated_name) {
+			return false;
+		}
+		$db=self::__instance();
+		$condition = array("AND" =>
+						array("user_id[=]" => $generated_name,
+						)
+					);
+		$list = $db->select ( self::getTableName(), self::$columns, $condition );
+
+		if ($list) {
+			return $list[0];
+		}
+		return array ();
+  }
+
+  public static function unableActor($actor_id){
+    if (empty($actor_id)) {
+        return false;
     }
 
-    public static function getActorInfoByGeneratedName($generated_name){
-      if (!$generated_name) {
-  			return false;
-  		}
-  		$db=self::__instance();
-  		$condition = array("AND" =>
-  						array("user_id[=]" => $generated_name,
-  						)
-  					);
-  		$list = $db->select ( self::getTableName(), self::$columns, $condition );
+    $db = self::__instance();
+    $update_data = array('is_invalid' => 1);
+    $condition = array('id' => $actor_id);
 
-  		if ($list) {
-  			return $list[0];
-  		}
-  		return array ();
+    $id = $db->update(self::getTableName(), $update_data, $condition);
+
+    return $id;
+  }
+
+  public static function enableActor($actor_id){
+    if (empty($actor_id)) {
+        return false;
     }
 
-    public static function unableActor($actor_id){
-      if (empty($actor_id)) {
-          return false;
-      }
+    $db = self::__instance();
+    $update_data = array('is_invalid' => 0);
+    $condition = array('id' => $actor_id);
 
-      $db = self::__instance();
-      $update_data = array('is_invalid' => 1);
-      $condition = array('id' => $actor_id);
+    $id = $db->update(self::getTableName(), $update_data, $condition);
 
-      $id = $db->update(self::getTableName(), $update_data, $condition);
+    return $id;
+  }
 
-      return $id;
+  public static function getActorInfoById($actor_id){
+    if (empty($actor_id)) {
+        return false;
     }
 
-    public static function enableActor($actor_id){
-      if (empty($actor_id)) {
-          return false;
-      }
+    $db = self::__instance();
+    $condition = array('actor_id' => $actor_id);
 
-      $db = self::__instance();
-      $update_data = array('is_invalid' => 0);
-      $condition = array('id' => $actor_id);
-
-      $id = $db->update(self::getTableName(), $update_data, $condition);
-
-      return $id;
+    $list = $db->select(self::getTableName(), self::$columns, $condition);
+    if($list){
+      return $list[0];
     }
 
-    public static function getActorInfoById($actor_id){
-      if (empty($actor_id)) {
-          return false;
-      }
+    return array();
+  }
 
-      $db = self::__instance();
-      $condition = array('actor_id' => $actor_id);
+  public static function addActor($actor_data){
+    if (!$actor_data || !is_array($actor_data)) {
+        return false;
+    }
+    $actor_data["actor_password"] = md5("123456");
+    $actor_data["is_invalid"] = 0;
+    $db = self::__instance();
+    $id = $db->insert(self::getTableName(), $actor_data);
 
-      $list = $db->select(self::getTableName(), self::$columns, $condition);
-      if($list){
-        return $list[0];
-      }
+    return $id;
+  }
 
-      return array();
+  public static function updateActor($actor_id, $actor_data){
+    if (!$actor_data || !is_array($actor_data)) {
+        return false;
     }
 
-    public static function addActor($actor_data){
-      if (!$actor_data || !is_array($actor_data)) {
-          return false;
-      }
-      $actor_data["actor_password"] = md5("123456");
-      $actor_data["is_invalid"] = 0;
-      $db = self::__instance();
-      $id = $db->insert(self::getTableName(), $actor_data);
+    $db = self::__instance();
+    $condition = array('id' => $actor_id);
 
-      return $id;
+    $id = $db->update(self::getTableName(), $actor_data, $condition);
+
+    return $id;
+  }
+
+  //输入一个数据库列表。返回一个以ID为key的数组
+  public static function rebuildActorListById($actor_list){
+    $result = array();
+    foreach ($actor_list as $key => $value) {
+      $actor_id = $value["id"];
+      $result[$actor_id] = $value;
     }
-
-    public static function updateActor($actor_id, $actor_data){
-      if (!$actor_data || !is_array($actor_data)) {
-          return false;
-      }
-
-      $db = self::__instance();
-      $condition = array('id' => $actor_id);
-
-      $id = $db->update(self::getTableName(), $actor_data, $condition);
-
-      return $id;
-    }
-
-    //输入一个数据库列表。返回一个以ID为key的数组
-    public static function rebuildActorListById($actor_list){
-      $result = array();
-      foreach ($actor_list as $key => $value) {
-        $actor_id = $value["id"];
-        $result[$actor_id] = $value;
-      }
-      return $result;
-    }
+    return $result;
+  }
 }
