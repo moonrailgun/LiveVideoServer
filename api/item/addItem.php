@@ -1,7 +1,7 @@
 <?php
 require ('../../include/init.inc.php');
 
-$actorID = $actorName = $playerID = $playerName = $toolName = $toolTypeName = $totalCost = $totalAmount = $sendTime = '';
+$actorID = $actorName = $playerID = $playerName = $toolName = $totalCost = $totalAmount = $sendTime = '';
 extract ($_POST, EXTR_IF_EXISTS);
 
 if (Common::isPost()) {
@@ -14,29 +14,27 @@ if (Common::isPost()) {
 		$item_data['playerID'] = $playerID;
 		$item_data['playerName'] = $playerName;
 		$item_data['toolName'] = $toolName;
-		$item_data['toolTypeName'] = $toolTypeName;
 		$item_data['totalCost'] = $totalCost;
 		$item_data['totalAmount'] = $totalAmount;
 		$item_data['createdDate'] = $sendTime;
 
 		$id = LVSItemLog::addItem($item_data);
 		if($id) {
-			// $res['resultCode'] = 1;
-			// $res['id'] = $id;
+			$res['statusCode'] = 1;
 			$res['result'][0] = array(
 				"result" => 1,
 				"tip"=>ErrorMessage::SUCCESS
 			);
 		}else{
-			// $res['resultCode'] = 0;
-			// $res['errorMessage'] = ErrorMessage::ERROR;
+			$res['resultCode'] = 0;
+			$res['statusCode'] = 0;
 			$res['result'][0] = array(
 				"result" => 0,
 				"tip"=>ErrorMessage::ERROR
 			);
 		}
 	}else{
-		// $res['resultCode'] = 0;
+		$res['resultCode'] = 0;
 		$res['result'][0] = array(
 			"result" => 0,
 			"tip"=>ErrorMessage::NEED_PARAM
