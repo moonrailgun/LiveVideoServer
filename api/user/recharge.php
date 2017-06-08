@@ -16,12 +16,13 @@ if(Common::isPost()){
     'recharge_amount' => $fetchCost,
     'recharge_method' => $rechargeMethod
   ));
-  if($data){
+  $id = LVSActor::recharge($userID, $fetchCost);
+  if($data && $id){
     $res['data'][0]['result'] = 1;
-    $res['data'][0]['tips'] = "充值记录添加成功";
+    $res['data'][0]['tips'] = "充值成功";
   }else{
     $res['data'][0]['result'] = 0;
-    $res['data'][0]['tips'] = "充值记录添加失败";
+    $res['data'][0]['tips'] = "充值失败";
   }
 
   echo json_encode($res);

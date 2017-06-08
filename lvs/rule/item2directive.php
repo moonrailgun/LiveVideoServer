@@ -18,7 +18,7 @@ $column = array(
 );
 $column = join(",", $column);
 if($website_id){
-  $query = "SELECT $column FROM $table_name LEFT JOIN $item_table_name ON $table_name.tool_id = $item_table_name.id WHERE website_id=1";
+  $query = "SELECT $column FROM $table_name LEFT JOIN $item_table_name ON $table_name.tool_id = $item_table_name.id WHERE website_id=$website_id";
 }else{
   $query = "SELECT $column FROM $table_name LEFT JOIN $item_table_name ON $table_name.tool_id = $item_table_name.id";
 }

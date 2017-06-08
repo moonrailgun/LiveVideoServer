@@ -3,7 +3,7 @@
 class LVSActor extends LVSBase
 {
     private static $table_name = 'actor';
-    private static $columns = array('id', 'website_id', 'group_id', 'real_name', 'sex','live_id','user_id','channel_id','address','is_invalid','remark');
+    private static $columns = array('id', 'website_id', 'group_id', 'real_name', 'sex','live_id','user_id','channel_id','address','is_invalid','remark','currency_count');
 
     public static function checkPassword($user_id, $actor_password){
       $md5_pwd = md5($actor_password);
@@ -246,7 +246,7 @@ class LVSActor extends LVSBase
 
   public static function updateActor($actor_id, $actor_data){
     if (!$actor_data || !is_array($actor_data)) {
-        return false;
+      return false;
     }
 
     $db = self::__instance();
@@ -265,5 +265,21 @@ class LVSActor extends LVSBase
       $result[$actor_id] = $value;
     }
     return $result;
+  }
+
+  public static function recharge($user_id ,$amount) {
+    if (!$amount || !$user_id) {
+      return false;
+    }
+
+    $db = self::__instance();
+    $data = array(
+      'currency_count[+]' => $amount
+    );
+    $condition = array('user_id' => $user_id);
+
+    $id = $db->update(self::getTableName(), $data, $condition);
+
+    return $id;
   }
 }
