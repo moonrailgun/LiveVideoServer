@@ -31,7 +31,8 @@
 					<div class="clearfix"><input type="checkbox" name="remember" value="remember-me"> 记住我
 					<span class="label label-info">一个月内不用再次登入</span>
 					<input type="submit" class="btn btn-primary pull-right" name="loginSubmit" value="登入"/>
-          <a href="<{$smarty.const.ADMIN_URL}>/panel/forget_password.php" class="btn btn-primary pull-right" style="margin:0 2px;">忘记密码</a></div>
+          <!-- <a href="<{$smarty.const.ADMIN_URL}>/panel/forget_password.php" class="btn btn-primary pull-right" style="margin:0 2px;">忘记密码</a> -->
+        </div>
 
                 </form>
             </div>
